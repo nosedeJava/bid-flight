@@ -1,10 +1,20 @@
 package project.app.model;
 
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 /**
  * User
  */
+@Entity
+@Table(name = "User")
 public class User {
-
+    @Id
     private String mail;
     private String password;
     private String names;
@@ -13,9 +23,25 @@ public class User {
     private String documentType;
     private String document;
     private float balance;
+    @OneToMany
+    @JoinColumn(name = "user")
+    private Set<Payment> payments;
 
     public User(){
 
+    }
+
+    public User(String mail, String password, String names, String lastNames, String username, String documentType,
+            String document, float balance, Set<Payment> payments) {
+        this.mail = mail;
+        this.password = password;
+        this.names = names;
+        this.lastNames = lastNames;
+        this.username = username;
+        this.documentType = documentType;
+        this.document = document;
+        this.balance = balance;
+        this.payments = payments;
     }
 
     public String getMail() {
@@ -88,5 +114,7 @@ public class User {
                 + lastNames + ", mail=" + mail + ", names=" + names + ", password=" + password + ", username="
                 + username + "]";
     }
+
+    
     
 }

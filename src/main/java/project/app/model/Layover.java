@@ -1,10 +1,22 @@
 package project.app.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 /**
  * Layover
  */
+@Entity
+@Table(name = "layover")
 public class Layover {
-    
+
+    @Id
+    private int id;
+    @ManyToOne
+    @JoinColumn(name = "flight")
     private Flight layover;
     private String airport;
 

@@ -1,20 +1,36 @@
 package project.app.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Flight
  */
+@Entity
+@Table(name = "flight")
 public class Flight {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String airline;
     private Date takeOfffDate;
     private int duration;
     private String source;
     private String destiny;
-    private List<Layover> layovers;
+    @OneToMany
+    @JoinColumn(name = "flight")
+    private Set<Layover> layovers;
+    @OneToMany
+    @JoinColumn(name = "flight")
+    private Set<Ticket> tickets;
 
     public Flight() {
     }
@@ -67,20 +83,30 @@ public class Flight {
         this.destiny = destiny;
     }
 
-    public List<Layover> getLayovers() {
+    public Set<Layover> getLayovers() {
         return layovers;
     }
 
-    public void setLayovers(List<Layover> layovers) {
+    public void setLayovers(Set<Layover> layovers) {
         this.layovers = layovers;
     }
+
+    
+
+    public Set<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Set<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+    
 
     @Override
     public String toString() {
         return "Flight [airline=" + airline + ", destiny=" + destiny + ", duration=" + duration + ", id=" + id
                 + ", layovers=" + layovers + ", source=" + source + ", takeOfffDate=" + takeOfffDate + "]";
     }
-    
     
 
 }
