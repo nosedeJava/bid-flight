@@ -45,5 +45,13 @@ public class Auction {
         this.bids = bids;
     }
 
+    public List<User> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(List<User> followers) {
+        this.followers = followers;
+    }
+
     
 }
