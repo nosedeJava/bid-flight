@@ -1,5 +1,6 @@
 package project.app.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,11 +16,12 @@ import javax.persistence.Table;
 @Table(name = "payment")
 public class Payment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private int id;
     @ManyToOne
-    @JoinColumn(name = "user")
-    private User user;
+    @JoinColumn(name = "bidder")
+    private User bidder;
     private String type;
     private String info;
 
@@ -28,7 +30,7 @@ public class Payment {
     }
 
     public Payment(User user, String type, String info) {
-        this.user = user;
+        this.bidder = user;
         this.type = type;
         this.info = info;
     }
@@ -42,11 +44,11 @@ public class Payment {
     }
 
     public User getUser() {
-        return user;
+        return bidder;
     }
 
     public void setUser(User user) {
-        this.user = user;
+        this.bidder = user;
     }
 
     public String getType() {
@@ -67,7 +69,7 @@ public class Payment {
 
     @Override
     public String toString() {
-        return "Payment [id=" + id + ", info=" + info + ", type=" + type + ", user=" + user + "]";
+        return "Payment [id=" + id + ", info=" + info + ", type=" + type + ", user=" + bidder + "]";
     }
 
     

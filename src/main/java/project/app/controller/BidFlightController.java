@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 import project.app.model.Payment;
 import project.app.model.User;
 import project.app.persistence.UserRepository;
+import project.app.persistence.PaymentRepository;
 
-
-
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +29,14 @@ public class BidFlightController {
     @Qualifier(value = "userRepository")
     private UserRepository repository;
 
+    @Autowired
+    private PaymentRepository paymentReposiroty;
+
     @RequestMapping(value = "/auctions", method = RequestMethod.GET)
     public ResponseEntity<?> getAuctions() {
-        System.out.println("Entre prro jijijijijijijiji");
-        Payment payment = new Payment(null, "Tarjeta de credito", "Información que debería ser util jaja salu2");
-		Set<Payment> payments = new HashSet<>();
-		payments.add(payment);
-		User user = new User("Stilink306@gmail.com","password", "Nombres 1 y 2", "apellidos 1 y 2", "stilink", "CC", "123456789", (float)5000000, payments);
-		payment.setUser(user);
-		repository.save(user);
-        System.out.println(repository.findAll().toString());
+        /**
+         * TO DO
+         */
         return new ResponseEntity<>(repository.findAll().toString(),HttpStatus.ACCEPTED);
     }
 

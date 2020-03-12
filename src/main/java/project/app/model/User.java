@@ -2,6 +2,7 @@ package project.app.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -12,19 +13,19 @@ import javax.persistence.Table;
  * User
  */
 @Entity
-@Table(name = "User")
+@Table(name = "bidder")
 public class User {
     @Id
     private String mail;
     private String password;
     private String names;
-    private String lastNames;
+    private String lastnames;
     private String username;
-    private String documentType;
+    private String documenttype;
     private String document;
     private float balance;
-    @OneToMany
-    @JoinColumn(name = "user")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bidder")
     private Set<Payment> payments;
 
     public User(){
@@ -36,9 +37,9 @@ public class User {
         this.mail = mail;
         this.password = password;
         this.names = names;
-        this.lastNames = lastNames;
+        this.lastnames = lastNames;
         this.username = username;
-        this.documentType = documentType;
+        this.documenttype = documentType;
         this.document = document;
         this.balance = balance;
         this.payments = payments;
@@ -69,11 +70,11 @@ public class User {
     }
 
     public String getLastNames() {
-        return lastNames;
+        return lastnames;
     }
 
     public void setLastNames(String lastNames) {
-        this.lastNames = lastNames;
+        this.lastnames = lastNames;
     }
 
     public String getUsername() {
@@ -85,11 +86,11 @@ public class User {
     }
 
     public String getDocumentType() {
-        return documentType;
+        return documenttype;
     }
 
     public void setDocumentType(String documentType) {
-        this.documentType = documentType;
+        this.documenttype = documentType;
     }
 
     public String getDocument() {
@@ -110,8 +111,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [balance=" + balance + ", document=" + document + ", documentType=" + documentType + ", lastNames="
-                + lastNames + ", mail=" + mail + ", names=" + names + ", password=" + password + ", username="
+        return "User [balance=" + balance + ", document=" + document + ", documentType=" + documenttype + ", lastNames="
+                + lastnames + ", mail=" + mail + ", names=" + names + ", password=" + password + ", username="
                 + username + "]";
     }
 
