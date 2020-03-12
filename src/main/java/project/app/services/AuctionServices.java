@@ -60,10 +60,16 @@ public class AuctionServices {
         try{
             auction = auctionRepository.findById(id);
         }catch(Exception e){
-            throw new AuctionNotFound("Subastas no encontrada");
+            throw new AuctionNotFound("Subasta no encontrada");
         }
         return auction;
     }
+
+
+
+    /**
+     * TO DO - Remove
+     */
 
 
 
