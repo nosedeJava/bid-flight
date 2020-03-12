@@ -27,6 +27,9 @@ public class Bidder {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "bidder")
     private Set<Payment> payments;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bidder")
+    private Set<Bid> bids;
 
     public Bidder(){
 
