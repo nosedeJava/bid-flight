@@ -22,18 +22,18 @@ public class Layover {
     private int id;
     @ManyToOne
     @JoinColumn(name = "flight")
-    private Flight layover;
+    private Flight flight;
     private String airport;
 
     public Layover() {
     }
 
-    public Flight getLayover() {
-        return layover;
+    public Flight getFlight() {
+        return flight;
     }
 
-    public void setLayover(Flight layover) {
-        this.layover = layover;
+    public void setFlight(Flight flight) {
+        this.flight = flight;
     }
 
     public String getAirport() {
@@ -46,7 +46,7 @@ public class Layover {
 
     @Override
     public String toString() {
-        return "Layover [airport=" + airport + ", layover=" + layover + "]";
+        return "Layover [airport=" + airport + ", flight=" + flight + "]";
     }
 
     

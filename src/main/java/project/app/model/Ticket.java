@@ -24,7 +24,7 @@ public class Ticket {
     @JoinColumn(name = "flight")
     private Flight flight;
     private float price;
-    private String bagTyte;
+    private String bagtype;
 
     public Ticket() {
     }
@@ -61,17 +61,17 @@ public class Ticket {
         this.price = price;
     }
 
-    public String getBagTyte() {
-        return bagTyte;
+    public String getBagtype() {
+        return bagtype;
     }
 
-    public void setBagTyte(String bagTyte) {
-        this.bagTyte = bagTyte;
+    public void setBagtype(String bagtype) {
+        this.bagtype = bagtype;
     }
 
     @Override
     public String toString() {
-        return "Ticket [bagTyte=" + bagTyte + ", flight=" + flight + ", id=" + id + ", price=" + price + ", type="
+        return "Ticket [bagTyte=" + bagtype + ", flight=" + flight + ", id=" + id + ", price=" + price + ", type="
                 + type + "]";
     }
     

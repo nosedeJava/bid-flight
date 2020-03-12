@@ -3,12 +3,14 @@ package project.app.model;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,15 +24,17 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "serial")
     private int id;
-    private String airline;
-    private Date takeOfffDate;
+    @ManyToOne
+    @JoinColumn(name = "airline")
+    private Airline airline;
+    private Date takeoffdate;
     private int duration;
     private String source;
     private String destiny;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "flight")
     private Set<Layover> layovers;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "flight")
     private Set<Ticket> tickets;
 
@@ -45,20 +49,20 @@ public class Flight {
         this.id = id;
     }
 
-    public String getAirline() {
+    public Airline getAirline() {
         return airline;
     }
 
-    public void setAirline(String airline) {
+    public void setAirline(Airline airline) {
         this.airline = airline;
     }
 
-    public Date getTakeOfffDate() {
-        return takeOfffDate;
+    public Date getTakeoffdate() {
+        return takeoffdate;
     }
 
-    public void setTakeOfffDate(Date takeOfffDate) {
-        this.takeOfffDate = takeOfffDate;
+    public void setTakeoffdate(Date takeoffdate) {
+        this.takeoffdate = takeoffdate;
     }
 
     public int getDuration() {
@@ -107,7 +111,7 @@ public class Flight {
     @Override
     public String toString() {
         return "Flight [airline=" + airline + ", destiny=" + destiny + ", duration=" + duration + ", id=" + id
-                + ", layovers=" + layovers + ", source=" + source + ", takeOfffDate=" + takeOfffDate + "]";
+                + ", source=" + source + ", takeOfffDate=" + takeoffdate + "]";
     }
     
 

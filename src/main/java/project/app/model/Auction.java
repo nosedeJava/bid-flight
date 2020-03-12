@@ -11,7 +11,7 @@ public class Auction {
     private Ticket ticket;
     private Date dueDate;
     private List<Bid> bids;
-    private List<User> followers;
+    private List<Bidder> followers;
 
     public Auction() {
     }
@@ -45,11 +45,11 @@ public class Auction {
         this.bids = bids;
     }
 
-    public List<User> getFollowers() {
+    public List<Bidder> getFollowers() {
         return followers;
     }
 
-    public void setFollowers(List<User> followers) {
+    public void setFollowers(List<Bidder> followers) {
         this.followers = followers;
     }
 

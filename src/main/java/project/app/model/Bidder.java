@@ -10,11 +10,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * User
+ * Bidder
  */
 @Entity
 @Table(name = "bidder")
-public class User {
+public class Bidder {
     @Id
     private String mail;
     private String password;
@@ -28,11 +28,11 @@ public class User {
     @JoinColumn(name = "bidder")
     private Set<Payment> payments;
 
-    public User(){
+    public Bidder(){
 
     }
 
-    public User(String mail, String password, String names, String lastNames, String username, String documentType,
+    public Bidder(String mail, String password, String names, String lastNames, String username, String documentType,
             String document, float balance, Set<Payment> payments) {
         this.mail = mail;
         this.password = password;
@@ -111,7 +111,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [balance=" + balance + ", document=" + document + ", documentType=" + documenttype + ", lastNames="
+        return "Bidder [balance=" + balance + ", document=" + document + ", documentType=" + documenttype + ", lastNames="
                 + lastnames + ", mail=" + mail + ", names=" + names + ", password=" + password + ", username="
                 + username + "]";
     }

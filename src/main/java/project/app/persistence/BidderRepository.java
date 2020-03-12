@@ -3,13 +3,13 @@ package project.app.persistence;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import project.app.model.User;
+import project.app.model.Bidder;
 
 /**
- * UserRepository
+ * BidderRepository
  */
 @Repository
-public interface UserRepository extends CrudRepository<User, String>{
+public interface BidderRepository extends CrudRepository<Bidder, String>{
 
     
 }

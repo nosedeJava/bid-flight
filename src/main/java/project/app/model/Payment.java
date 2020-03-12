@@ -21,7 +21,7 @@ public class Payment {
     private int id;
     @ManyToOne
     @JoinColumn(name = "bidder")
-    private User bidder;
+    private Bidder bidder;
     private String type;
     private String info;
 
@@ -29,8 +29,8 @@ public class Payment {
         
     }
 
-    public Payment(User user, String type, String info) {
-        this.bidder = user;
+    public Payment(Bidder bidder, String type, String info) {
+        this.bidder = bidder;
         this.type = type;
         this.info = info;
     }
@@ -43,12 +43,12 @@ public class Payment {
         this.id = id;
     }
 
-    public User getUser() {
+    public Bidder getBidder() {
         return bidder;
     }
 
-    public void setUser(User user) {
-        this.bidder = user;
+    public void setBidder(Bidder bidder) {
+        this.bidder = bidder;
     }
 
     public String getType() {
@@ -69,7 +69,7 @@ public class Payment {
 
     @Override
     public String toString() {
-        return "Payment [id=" + id + ", info=" + info + ", type=" + type + ", user=" + bidder + "]";
+        return "Payment [id=" + id + ", info=" + info + ", type=" + type + ", bidder=" + bidder + "]";
     }
 
     

@@ -5,23 +5,23 @@ package project.app.model;
  */
 public class Bid {
 
-    private User user;
+    private Bidder bidder;
     private float amount;
 
     public Bid() {
     }
 
-    public Bid(User user, float amount) {
-        this.user = user;
+    public Bid(Bidder bidder, float amount) {
+        this.bidder = bidder;
         this.amount = amount;
     }
 
-    public User getUser() {
-        return user;
+    public Bidder getBidder() {
+        return bidder;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Bidder bidder) {
+        this.bidder = bidder;
     }
 
     public float getAmount() {
@@ -34,7 +34,7 @@ public class Bid {
 
     @Override
     public String toString() {
-        return "Bid [amount=" + amount + ", user=" + user + "]";
+        return "Bid [amount=" + amount + ", bidder=" + bidder + "]";
     }
     
 }
