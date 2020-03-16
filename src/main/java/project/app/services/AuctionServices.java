@@ -69,9 +69,13 @@ public class AuctionServices {
         Auction auction = null;
         try{
             auction = auctionRepository.findById(id);
+            if(auction==null){
+                throw new AuctionNotFound("Subasta no encontrada");
+            }
         }catch(Exception e){
             throw new AuctionNotFound("Subasta no encontrada");
         }
+        auction.getTicket().getFlight().setTickets(null);
         return auction;
     }
 
