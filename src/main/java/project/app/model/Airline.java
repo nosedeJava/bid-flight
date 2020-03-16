@@ -1,12 +1,7 @@
 package project.app.model;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,9 +16,6 @@ public class Airline {
     private String phone;
     private String web;
     private String information;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "airline")
-    private Set<Flight> flights;
 
     public Airline() {
     }

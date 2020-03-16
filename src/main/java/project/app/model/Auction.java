@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,8 +25,10 @@ public class Auction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "serial")
     private int id;
+    @OneToOne( cascade = CascadeType.ALL)
+    @JoinColumn(name = "ticket")
     private Ticket ticket;
-    private Date dueDate;
+    private Date duedate;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "auction")
     private Set<Bid> bids;
@@ -36,7 +39,7 @@ public class Auction {
 
     public Auction(Ticket ticket, Date dueDate) {
         this.ticket = ticket;
-        this.dueDate = dueDate;
+        this.duedate = dueDate;
     }
 
     public Ticket getTicket() {
@@ -48,11 +51,11 @@ public class Auction {
     }
 
     public Date getDueDate() {
-        return dueDate;
+        return duedate;
     }
 
     public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
+        this.duedate = dueDate;
     }
 
     public Set<Bid> getBids() {
