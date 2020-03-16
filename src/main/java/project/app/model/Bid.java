@@ -21,9 +21,6 @@ public class Bid {
     @Column(columnDefinition = "serial")
     private int id;
     @ManyToOne
-    @JoinColumn(name = "auction")
-    private Auction auction;
-    @ManyToOne
     @JoinColumn(name = "bidder")
     private Bidder bidder;
     private float amount;

@@ -9,5 +9,7 @@ import project.app.model.Airline;
  */
 public interface AirlineRepository extends CrudRepository<Airline, String>{
 
+    public Airline findByName(String name);
+
     
 }

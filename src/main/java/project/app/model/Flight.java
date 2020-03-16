@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * Flight
  */
@@ -27,6 +29,8 @@ public class Flight {
     @ManyToOne
     @JoinColumn(name = "airline")
     private Airline airline;
+    @JsonFormat
+          (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
     private Date takeoffdate;
     private int duration;
     private String source;
@@ -40,6 +44,7 @@ public class Flight {
 
     public Flight() {
     }
+    
 
     public int getId() {
         return id;
@@ -112,6 +117,18 @@ public class Flight {
     public String toString() {
         return "Flight [airline=" + airline + ", destiny=" + destiny + ", duration=" + duration + ", id=" + id
                 + ", source=" + source + ", takeOfffDate=" + takeoffdate + "]";
+    }
+
+    public Flight(int id, Airline airline, Date takeoffdate, int duration, String source, String destiny,
+            Set<Layover> layovers, Set<Ticket> tickets) {
+        this.id = id;
+        this.airline = airline;
+        this.takeoffdate = takeoffdate;
+        this.duration = duration;
+        this.source = source;
+        this.destiny = destiny;
+        this.layovers = layovers;
+        this.tickets = tickets;
     }
     
 

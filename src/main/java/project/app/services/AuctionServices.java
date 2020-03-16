@@ -14,6 +14,7 @@ import project.app.model.Auction;
 import project.app.model.Flight;
 import project.app.model.Ticket;
 import project.app.persistence.AuctionRepository;
+import project.app.persistence.FlightRepository;
 
 /**
  * AuctionServices
@@ -24,6 +25,9 @@ public class AuctionServices {
     @Autowired
     private AuctionRepository auctionRepository;
 
+    @Autowired
+    private FlightRepository flightRepository;
+
     /**
      * Operación realizada para obtener todas las subastas.
      * 
@@ -32,6 +36,10 @@ public class AuctionServices {
     public Set<Auction> getAllAuctions() {
         Set<Auction> auctions = new HashSet<>();
         auctions.addAll((Collection<? extends Auction>) auctionRepository.findAll());
+        // Para evitarnos recurrencias infinitas a la hora de mandar la información como string, debemos limpiar algunos datos.
+        for (Auction auction : auctions) {
+            auction.getTicket().getFlight().setTickets(null);
+        }
         return auctions;
     }
     
@@ -41,6 +49,8 @@ public class AuctionServices {
      * @param flight Vuelo que contiene una serie de tickets dentro.
      */
     public void addAuction(Flight flight){
+        // Salvamos el vuelo primero
+        flightRepository.save(flight);
         Date dueDate = calculateDate(flight);
         Set<Ticket> tickets = flight.getTickets();
         for (Ticket ticket : tickets) {
@@ -59,9 +69,13 @@ public class AuctionServices {
         Auction auction = null;
         try{
             auction = auctionRepository.findById(id);
+            if(auction==null){
+                throw new AuctionNotFound("Subasta no encontrada");
+            }
         }catch(Exception e){
             throw new AuctionNotFound("Subasta no encontrada");
         }
+        auction.getTicket().getFlight().setTickets(null);
         return auction;
     }
 
