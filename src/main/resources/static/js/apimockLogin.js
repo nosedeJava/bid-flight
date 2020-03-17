@@ -7,8 +7,8 @@ var apimockLogin = (function () {
         web: "www.avianca.com",
         information: "soy una aerolinea"
     }
-    bidders["jhon@es.hp"] = {
-        mail: "jhon@es.hp",
+    bidders["jhon@arsw.co"] = {
+        mail: "jhon@arsw.co",
         password: "1234",
         names: "Jhon",
         lastnames: "Apellido",
@@ -46,9 +46,16 @@ var apimockLogin = (function () {
             }
         }
     }
+    let incrementBalance=(uri,method,mail,balance,callback)=>{
+        console.log(uri + " " + method)
+        console.log(mail + " " + balance)
+        bidders[mail].balance+=balance 
+        callback(null, "incrementado")
+    }
     return {
         createAirline: (uri, method, airline, callback) => createNewAirline(uri, method, airline, callback),
         createBidder: (uri, method, bidder, callback) => createNewBidder(uri, method, bidder, callback),
-        loginBidder: (uri, method, mail, password, callback) => logBidder(uri, method, mail, password, callback)
+        loginBidder: (uri, method, mail, password, callback) => logBidder(uri, method, mail, password, callback),
+        putMoreBalance:(uri,method,mail,balance,callback)=> incrementBalance(uri,method,mail,balance,callback)
     }
 })();

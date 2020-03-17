@@ -10,7 +10,7 @@ var apimockAuction = (function () {
         duedate: Date(),
         bids=[{
             bidder: {
-                mail: "jhon@es.hp",
+                mail: "jhon@arsw.co",
                 password: "1234"
             },
             amount: 1024
