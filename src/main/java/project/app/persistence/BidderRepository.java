@@ -1,15 +1,15 @@
 package project.app.persistence;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
 import project.app.model.Bidder;
 
 /**
  * BidderRepository
  */
-@Repository
 public interface BidderRepository extends CrudRepository<Bidder, String>{
 
-    
+    public Bidder findByMail(String mail);
+
+    public Bidder findByUsername(String username);
 }

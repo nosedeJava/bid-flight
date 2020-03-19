@@ -35,14 +35,14 @@ public class Bidder {
 
     }
 
-    public Bidder(String mail, String password, String names, String lastNames, String username, String documentType,
+    public Bidder(String mail, String password, String names, String lastnames, String username, String documenttype,
             String document, float balance, Set<Payment> payments) {
         this.mail = mail;
         this.password = password;
         this.names = names;
-        this.lastnames = lastNames;
+        this.lastnames = lastnames;
         this.username = username;
-        this.documenttype = documentType;
+        this.documenttype = documenttype;
         this.document = document;
         this.balance = balance;
         this.payments = payments;
@@ -72,12 +72,12 @@ public class Bidder {
         this.names = names;
     }
 
-    public String getLastNames() {
+    public String getLastnames() {
         return lastnames;
     }
 
-    public void setLastNames(String lastNames) {
-        this.lastnames = lastNames;
+    public void setLastnames(String lastnames) {
+        this.lastnames = lastnames;
     }
 
     public String getUsername() {
@@ -88,12 +88,12 @@ public class Bidder {
         this.username = username;
     }
 
-    public String getDocumentType() {
+    public String getDocumenttype() {
         return documenttype;
     }
 
-    public void setDocumentType(String documentType) {
-        this.documenttype = documentType;
+    public void setDocumenttype(String documenttype) {
+        this.documenttype = documenttype;
     }
 
     public String getDocument() {
@@ -117,6 +117,14 @@ public class Bidder {
         return "Bidder [balance=" + balance + ", document=" + document + ", documentType=" + documenttype + ", lastNames="
                 + lastnames + ", mail=" + mail + ", names=" + names + ", password=" + password + ", username="
                 + username + "]";
+    }
+
+    public Set<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(Set<Payment> payments) {
+        this.payments = payments;
     }
 
     
