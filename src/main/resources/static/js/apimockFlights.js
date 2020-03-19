@@ -6,8 +6,8 @@ var apimockFlights = (function () {
         },
         takeoffdate: Date(),
         duration: 12,
-        source: "Bogota",
-        destiny: "Paris",
+        source: "Bogota, Colombia",
+        destiny: "Paris, France",
         layovers: [],
         tickets: [{
             type: "Economic",

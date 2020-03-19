@@ -8,7 +8,39 @@ var apimockAuction = (function () {
             flight: 0
         },
         duedate: Date(),
-        bids=[{
+        bids:[{
+            bidder: {
+                mail: "jhon@arsw.co",
+                password: "1234"
+            },
+            amount: 1024
+        }]
+    })
+    auctions.push({
+        ticket: {
+            type: "Economic",
+            price: 123.12,
+            bagtype: "Medium",
+            flight: 0
+        },
+        duedate: Date(),
+        bids:[{
+            bidder: {
+                mail: "jhon@arsw.co",
+                password: "1234"
+            },
+            amount: 1024
+        }]
+    })
+    auctions.push({
+        ticket: {
+            type: "Economic",
+            price: 123.12,
+            bagtype: "Medium",
+            flight: 0
+        },
+        duedate: Date(),
+        bids:[{
             bidder: {
                 mail: "jhon@arsw.co",
                 password: "1234"
@@ -26,7 +58,7 @@ var apimockAuction = (function () {
             auctions.push({
                 ticket:ticket,
                 duedate:Date(),
-                bids=[]
+                bids:[]
             })
         });
     }

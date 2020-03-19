@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Bid flight</title>
 </head>
 
@@ -44,50 +45,180 @@
         </ul>
     </div>
 
-    <div class="container flight" style="margin-top:20px">
-        <div class="row">
-            <div class="col-md-9 py-2">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-5">
-                                From: 
-                                <span>Bogota, Colombia</span>  
-                                To: 
-                                <span>Paris, France</span>
-                                <br>
-                                <span>Straight, 1 layover, 2 layover </span>
-                                <br>
-                                <span>Take off date: 15 jan 2021 </span><br>
-                            </div>
+    <div class="container-fluid" id="list-flights">
+        <div class="container flight" style="margin-top:20px">
+            <div class="row">
+                <div class="col-md-9 py-2">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-5">
+                                    <span>Bogota, Colombia</span>
+                                    <i class="material-icons" style="color: rgba(0,0,0,0.60)">arrow_forward</i>
+                                    <span>Paris, France</span>
+                                    <i class="material-icons" title="Direct"
+                                        style="color: #8F4213">airplanemode_active</i> <br>
 
-                            <div class="col-2">
-                                Airline:
-                                <span>Avianca</span> 
+                                    <br>
+                                    <i class="material-icons" title="Take off date">schedule</i>
+                                    <span> 15 jan 2021 </span><br>
+                                </div>
+
+                                <div class="col-2">
+                                    <b>Airline:</b>
+                                    <span>Avianca</span>
+                                </div>
+                                <div class="col-5">
+                                    Flight type:
+                                    <span>Economic</span>
+                                    <i class="material-icons">people_alt</i>
+                                    <br>
+                                    Bag type:
+                                    <span>Medium </span>
+                                    <i class="material-icons">work_outline</i>
+                                    <br>
+                                    Duration:
+                                    <span>12 hours</span>
+                                    <i class="material-icons">watch_later</i>
+                                    <br>
+                                </div>
                             </div>
-                            <div class="col-5">
-                                Flight type: 
-                                <span>Economic</span>  <br>
-                                Bag type: 
-                                <span>Medium </span>  <br>
-                                Duration:
-                                <span>12 hours</span>  <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 py-2">
+                    <div class="card border-primary h-100">
+                        <div class="card-header  border-primary bg-transparent text-primary">The max bid is at</div>
+                        <div class="card-body text-primary">
+                            <div class="fluid-container">
+                                <div class="row">
+                                    <div class="col-sm-auto pt-2">
+                                        <p class="card-text">$300 USD</p>
+                                    </div>
+                                    <div class="col-sm-auto">
+                                        <button type="button" class="btn btn-outline-primary particularAuction"
+                                            id="auction-0">Let's go bid!</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 py-2">
-                <div class="card border-primary h-100">
-                    <div class="card-header  border-primary bg-transparent text-primary">The max bid is at</div>
-                    <div class="card-body text-primary">
-                        <div class="fluid-container">
+        </div>
+        <div class="container flight" style="margin-top:20px">
+            <div class="row">
+                <div class="col-md-9 py-2">
+                    <div class="card h-100">
+                        <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-auto pt-2">
-                                    <p class="card-text">$300 USD</p>
+                                <div class="col-5">
+                                    <span>Bogota, Colombia</span>
+                                    <i class="material-icons" style="color: rgba(0,0,0,0.60)">arrow_forward</i>
+                                    <span>Paris, France</span>
+                                    <i class="material-icons" title="Direct"
+                                        style="color: #8F4213">airplanemode_active</i> <br>
+
+                                    <br>
+                                    <i class="material-icons" title="Take off date">schedule</i>
+                                    <span> 15 jan 2021 </span><br>
                                 </div>
-                                <div class="col-sm-auto">
-                                    <button type="button" class="btn btn-outline-primary particularAuction" id="auction-0">Let's go bid!</button>
+
+                                <div class="col-2">
+                                    <b>Airline:</b>
+                                    <span>Avianca</span>
+                                </div>
+                                <div class="col-5">
+                                    Flight type:
+                                    <span>Economic</span>
+                                    <i class="material-icons">people_alt</i>
+                                    <br>
+                                    Bag type:
+                                    <span>Medium </span>
+                                    <i class="material-icons">work_outline</i>
+                                    <br>
+                                    Duration:
+                                    <span>12 hours</span>
+                                    <i class="material-icons">watch_later</i>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 py-2">
+                    <div class="card border-primary h-100">
+                        <div class="card-header  border-primary bg-transparent text-primary">The max bid is at</div>
+                        <div class="card-body text-primary">
+                            <div class="fluid-container">
+                                <div class="row">
+                                    <div class="col-sm-auto pt-2">
+                                        <p class="card-text">$300 USD</p>
+                                    </div>
+                                    <div class="col-sm-auto">
+                                        <button type="button" class="btn btn-outline-primary particularAuction"
+                                            id="auction-0">Let's go bid!</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container flight" style="margin-top:20px">
+            <div class="row">
+                <div class="col-md-9 py-2">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-5">
+                                    <span>Bogota, Colombia</span>
+                                    <i class="material-icons" style="color: rgba(0,0,0,0.60)">arrow_forward</i>
+                                    <span>Paris, France</span>
+                                    <i class="material-icons" title="Direct"
+                                        style="color: #8F4213">airplanemode_active</i> <br>
+
+                                    <br>
+                                    <i class="material-icons" title="Take off date">schedule</i>
+                                    <span> 15 jan 2021 </span><br>
+                                </div>
+
+                                <div class="col-2">
+                                    <b>Airline:</b>
+                                    <span>Avianca</span>
+                                </div>
+                                <div class="col-5">
+                                    Flight type:
+                                    <span>Economic</span>
+                                    <i class="material-icons">people_alt</i>
+                                    <br>
+                                    Bag type:
+                                    <span>Medium </span>
+                                    <i class="material-icons">work_outline</i>
+                                    <br>
+                                    Duration:
+                                    <span>12 hours</span>
+                                    <i class="material-icons">watch_later</i>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 py-2">
+                    <div class="card border-primary h-100">
+                        <div class="card-header  border-primary bg-transparent text-primary">The max bid is at</div>
+                        <div class="card-body text-primary">
+                            <div class="fluid-container">
+                                <div class="row">
+                                    <div class="col-sm-auto pt-2">
+                                        <p class="card-text">$300 USD</p>
+                                    </div>
+                                    <div class="col-sm-auto">
+                                        <button type="button" class="btn btn-outline-primary particularAuction"
+                                            id="auction-0">Let's go bid!</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -96,111 +227,6 @@
             </div>
         </div>
     </div>
-    <div class="container flight" style="margin-top:20px">
-        <div class="row">
-            <div class="col-md-9 py-2">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-5">
-                                From: 
-                                <span>Bogota, Colombia</span>  
-                                To: 
-                                <span>Paris, France</span>
-                                <br>
-                                <span>Straight, 1 layover, 2 layover </span>
-                                <br>
-                                <span>Take off date: 15 jan 2021 </span><br>
-                            </div>
-
-                            <div class="col-2">
-                                Airline:
-                                <span>Avianca</span> 
-                            </div>
-                            <div class="col-5">
-                                Flight type: 
-                                <span>Economic</span>  <br>
-                                Bag type: 
-                                <span>Medium </span>  <br>
-                                Duration:
-                                <span>12 hours</span>  <br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 py-2">
-                <div class="card border-primary h-100">
-                    <div class="card-header  border-primary bg-transparent text-primary">The max bid is at</div>
-                    <div class="card-body text-primary">
-                        <div class="fluid-container">
-                            <div class="row">
-                                <div class="col-sm-auto pt-2">
-                                    <p class="card-text">$300 USD</p>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <button type="button" class="btn btn-outline-primary particularAuction" id="auction-1">Let's go bid!</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container flight" style="margin-top:20px">
-        <div class="row">
-            <div class="col-md-9 py-2">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-5">
-                                From: 
-                                <span>Bogota, Colombia</span>  
-                                To: 
-                                <span>Paris, France</span>
-                                <br>
-                                <span>Straight, 1 layover, 2 layover </span>
-                                <br>
-                                <span>Take off date: 15 jan 2021 </span><br>
-                            </div>
-
-                            <div class="col-2">
-                                Airline:
-                                <span>Avianca</span> 
-                            </div>
-                            <div class="col-5">
-                                Flight type: 
-                                <span>Economic</span>  <br>
-                                Bag type: 
-                                <span>Medium </span>  <br>
-                                Duration:
-                                <span>12 hours</span>  <br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 py-2">
-                <div class="card border-primary h-100">
-                    <div class="card-header  border-primary bg-transparent text-primary">The max bid is at</div>
-                    <div class="card-body text-primary">
-                        <div class="fluid-container">
-                            <div class="row">
-                                <div class="col-sm-auto pt-2">
-                                    <p class="card-text">$300 USD</p>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <button type="button" class="btn btn-outline-primary particularAuction" id="auction-2">Let's go bid!</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -212,7 +238,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-    <script src="js/auctionModule.js"></script>
+    <script src="js/apimockAuction.js"></script>
+    <script src="js/apimockFlights.js"></script>
+    <script src="js/appAuction.js"></script>
     <script src="js/interactiveAuction.js"></script>
 </body>
 
