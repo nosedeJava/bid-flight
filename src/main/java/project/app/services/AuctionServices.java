@@ -85,9 +85,17 @@ public class AuctionServices {
      * TO DO - Remove
      */
 
+    /**
+     * TO DO - Put
+     */
 
 
 
+    /**
+     * Metodo interno para el calculo de las subastas, originalmente quemado a 10h antes de la salida del vuelo.
+     * @param flight Vuelo al que se desea crearle sus subastas.
+     * @return Fecha final seleccionada para las subastas de los tiquetes.
+     */
     private Date calculateDate(Flight flight){
         Date dueDate = null;
         Date flightDate = flight.getTakeoffdate(); 

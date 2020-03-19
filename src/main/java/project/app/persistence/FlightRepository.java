@@ -9,5 +9,5 @@ import project.app.model.Flight;
  */
 public interface FlightRepository extends CrudRepository<Flight, Integer>{
     
-    
+    public Flight findById(int id);
 }

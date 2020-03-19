@@ -19,7 +19,7 @@ import org.springframework.http.ResponseEntity;
 public class BidFlightController {
 
     @Autowired
-    AuctionServices auctionServices;
+    private AuctionServices auctionServices;
 
     @RequestMapping(value = "/auctions", method = RequestMethod.GET)
     public ResponseEntity<?> getAuctions() {
@@ -29,9 +29,8 @@ public class BidFlightController {
         return new ResponseEntity<>(auctionServices.getAllAuctions(), HttpStatus.ACCEPTED);
     }
 
-
     @RequestMapping(value = "/auctions", method = RequestMethod.POST)
-    public ResponseEntity<?> addFlight(@RequestBody Flight flight){
+    public ResponseEntity<?> addFlight(@RequestBody Flight flight) {
         /**
          * TO DO
          */
