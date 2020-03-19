@@ -5,8 +5,11 @@ import org.springframework.stereotype.Service;
 
 import project.app.exception.BidderForbidden;
 import project.app.exception.BidderNotFound;
+import project.app.model.Auction;
 import project.app.model.Bidder;
 import project.app.persistence.BidderRepository;
+
+import java.util.Set;
 
 /**
  * BidderServices
@@ -49,6 +52,17 @@ public class BidderServices {
         }
         bidder = bidderDB;
         return bidder;
+    }
+
+    /**
+     * cambia la informacion del usuario
+     */
+    public void updateBidder(Bidder bidder,String name){
+
+    }
+
+    public Set<Auction> getAuction(String Username){
+        return null;
     }
 
     

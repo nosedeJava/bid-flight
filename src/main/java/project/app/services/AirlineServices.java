@@ -32,6 +32,10 @@ public class AirlineServices {
     @Autowired
     private AuctionServices auctionServices;
 
+    public Airline getAirlineByName(String name){
+        return null;
+    }
+
     /**
      * Añadir una aerolinea, pensado para el registro/creación interno de
      * aerolineas.
@@ -115,6 +119,10 @@ public class AirlineServices {
             throw new AirlineForbidden("Acción no permitida - Creación de un vuelo con una aerolinea inconsistente");
         }
         auctionServices.addAuction(flight);
+    }
+
+    public void updateFlight(String airline, int id,Flight flight){
+
     }
 
     /**
