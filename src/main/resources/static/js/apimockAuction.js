@@ -3,7 +3,7 @@ var apimockAuction = (function () {
     auctions.push({
         ticket: {
             type: "Economic",
-            price: 123.12,
+            price: 123,
             bagtype: "Medium",
             flight: 0
         },

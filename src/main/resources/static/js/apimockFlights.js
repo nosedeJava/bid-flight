@@ -1,14 +1,15 @@
+/*post date in format 12-04-2020 18:12 and receive in format */
 var apimockFlights = (function () {
     var flights = []
     flights.push({
         airline: {
             name: "Avianca"
         },
-        takeoffdate: Date(),
+        takeoffdate: "",
         duration: 12,
         source: "Bogota, Colombia",
         destiny: "Paris, France",
-        layovers: [],
+        layovers: ["asd"],
         tickets: [{
             type: "Economic",
             price: 123.12,

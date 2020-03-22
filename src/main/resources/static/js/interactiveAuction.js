@@ -11,7 +11,7 @@ $(document).ready(function () {
         $("#list-flights").html("");
         $("#auctionsButton").removeClass("active")
         $("#activeAuctionsButton").addClass("active")
-        alert("activeAuctionsButton")
+        appAuction.showActiveAuctions()
         return false;
     })
     $(".particularAuction").click(function(){
