@@ -40,6 +40,7 @@ public class AuctionServices {
         for (Auction auction : auctions) {
             auction.getTicket().getFlight().setTickets(null);
         }
+        auctions = filterByDate(auctions);
         return auctions;
     }
     
@@ -76,6 +77,7 @@ public class AuctionServices {
             throw new AuctionNotFound("Subasta no encontrada");
         }
         auction.getTicket().getFlight().setTickets(null);
+
         return auction;
     }
 
@@ -113,6 +115,22 @@ public class AuctionServices {
         cl.add(Calendar.HOUR, -10);
         dueDate = cl.getTime();
         return dueDate;
+    }
+
+    /**
+     * 
+     * @param auctions
+     * @return
+     */
+    private Set<Auction> filterByDate(Set<Auction> auctions){
+        Date today = new Date(System.currentTimeMillis());
+        for (Auction auction : auctions) {
+            Date auctionDate = auction.getDueDate();
+            if(today.compareTo(auctionDate)>=0){
+                auctions.remove(auction);
+            }
+        }
+        return auctions;
     }
 
 }

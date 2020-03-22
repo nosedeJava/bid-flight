@@ -29,8 +29,7 @@ public class Flight {
     @ManyToOne
     @JoinColumn(name = "airline")
     private Airline airline;
-    @JsonFormat
-          (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date takeoffdate;
     private int duration;
     private String source;

@@ -6,9 +6,11 @@ import org.springframework.stereotype.Service;
 import project.app.exception.BidderForbidden;
 import project.app.exception.BidderNotFound;
 import project.app.model.Auction;
+import project.app.model.Bid;
 import project.app.model.Bidder;
 import project.app.persistence.BidderRepository;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -35,6 +37,7 @@ public class BidderServices {
             throw new BidderForbidden("Username ya se encuentra en uso");
         }
         bidder.setPayments(null);
+        bidder.setBids(null);
         bidderRepository.save(bidder);        
     }
 
@@ -51,6 +54,7 @@ public class BidderServices {
             throw new BidderNotFound("Usuario no encontrado");
         }
         bidder = bidderDB;
+        bidder.setBids(null);
         return bidder;
     }
 
@@ -60,9 +64,24 @@ public class BidderServices {
     public void updateBidder(Bidder bidder,String name){
 
     }
-
-    public Set<Auction> getAuction(String Username){
-        return null;
+    
+    /**
+     * Retorna todas las subastas activas de un usuario (por activas se entiende aquellas en las que tiene una puja realizada).
+     * @param username Identificador del usuario
+     * @return Conjunto de subastas
+     * @throws BidderNotFound En caso de que no se al usuario en cuestion.
+     */
+    public Set<Auction> getAuctionsPerUser(String username) throws BidderNotFound {
+        Set<Auction> auctions = new HashSet<>();
+        Bidder bidderDB = bidderRepository.findByUsername(username);
+        if(bidderDB == null){
+            throw new BidderNotFound("Usuario no encontrado.");
+        }
+        for (Bid bid : bidderDB.getBids()) {
+            bid.setBidder(null);
+            auctions.add(bid.getAuction());
+        }
+        return auctions;
     }
 
     

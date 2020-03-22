@@ -127,6 +127,14 @@ public class Bidder {
         this.payments = payments;
     }
 
+    public Set<Bid> getBids() {
+        return bids;
+    }
+
+    public void setBids(Set<Bid> bids) {
+        this.bids = bids;
+    }
+
     
     
 }

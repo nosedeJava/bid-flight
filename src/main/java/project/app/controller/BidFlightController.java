@@ -123,7 +123,7 @@ public class BidFlightController {
     @RequestMapping(value = "/accounts/{username}/auctions", method = RequestMethod.GET)
     public ResponseEntity<?> getAuctionByBidder(@PathVariable("username") String username){
         try{
-            return new ResponseEntity<>(bidderServices.getAuction(username),HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(bidderServices.getAuctionsPerUser(username),HttpStatus.ACCEPTED);
 
         }catch(Exception ex){
             Logger.getLogger(BidFlightController.class.getName()).log(Level.SEVERE, null, ex);
@@ -174,6 +174,7 @@ public class BidFlightController {
     @RequestMapping(value = "/airlines/{airline}/flights", method = RequestMethod.POST)
     public ResponseEntity<?> postFlightByAirline(@RequestBody Flight flight,@PathVariable("airline") String airline){
         try{
+            System.out.println(flight.toString());
             airlineServices.addFlight(airline,flight);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
 

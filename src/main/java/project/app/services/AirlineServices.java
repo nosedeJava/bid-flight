@@ -174,4 +174,17 @@ public class AirlineServices {
         }
         flightRepository.delete(flightDB);
     }
+
+
+
+    /*private Set<Flight> filterByDate(Set<Flight> flights){
+        Date today = new Date(System.currentTimeMillis());
+        for (Auction auction : auctions) {
+            Date auctionDate = auction.getDueDate();
+            if(today.compareTo(auctionDate)>=0){
+                auctions.remove(auction);
+            }
+        }
+        return auctions;
+    }*/
 }
