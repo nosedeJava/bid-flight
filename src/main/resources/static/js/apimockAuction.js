@@ -1,6 +1,7 @@
 var apimockAuction = (function () {
     auctions = []
     auctions.push({
+        id: 0,
         ticket: {
             type: "Economic",
             price: 123,
@@ -8,8 +9,9 @@ var apimockAuction = (function () {
             flight: 0
         },
         duedate: Date(),
-        bids:[{
+        bids: [{
             bidder: {
+                username: "Crk_jhon",
                 mail: "jhon@arsw.co",
                 password: "1234"
             },
@@ -17,6 +19,7 @@ var apimockAuction = (function () {
         }]
     })
     auctions.push({
+        id: 1,
         ticket: {
             type: "Economic",
             price: 123.12,
@@ -24,8 +27,9 @@ var apimockAuction = (function () {
             flight: 0
         },
         duedate: Date(),
-        bids:[{
+        bids: [{
             bidder: {
+                username: "Crk_jhon",
                 mail: "jhon@arsw.co",
                 password: "1234"
             },
@@ -33,6 +37,7 @@ var apimockAuction = (function () {
         }]
     })
     auctions.push({
+        id: 2,
         ticket: {
             type: "Economic",
             price: 123.12,
@@ -40,13 +45,7 @@ var apimockAuction = (function () {
             flight: 0
         },
         duedate: Date(),
-        bids:[{
-            bidder: {
-                mail: "jhon@arsw.co",
-                password: "1234"
-            },
-            amount: 1024
-        }]
+        bids: []
     })
     let getAllAuctions = (uri, method, callback) => {
         console.log(uri + " " + method)
@@ -56,29 +55,41 @@ var apimockAuction = (function () {
         console.log(flight)
         flight.tickets.forEach(ticket => {
             auctions.push({
-                ticket:ticket,
-                duedate:Date(),
-                bids:[]
+                ticket: ticket,
+                duedate: Date(),
+                bids: []
             })
         });
     }
-    let bidOnAuctionImpl = (uri, method, idAuction, bid,callback) => {
-        console.log(uri+" "+method)
+    let bidOnAuctionImpl = (uri, method, idAuction, bid, callback) => {
+        console.log(uri + " " + method)
         console.log(idAuction)
         console.log(bid)
         console.log(auctions[idAuction])
         auctions[idAuction].bids.push(bid)
-        callback(null,"executed")
+        callback(null, "executed")
     }
-    let getAuction=(uri, method, id, callback)=>{
-        console.log(uri+" "+method)
+    let getAuction = (uri, method, id, callback) => {
+        console.log(uri + " " + method)
         console.log(auctions[id])
-        callback(null,auctions[id])
+        callback(null, auctions[id])
+    }
+    let getAuctionsPerUser = (uri, method, username, callback) => {
+        let x = []
+        auctions.forEach(auction => {
+            auction.bids.forEach(bid => {
+                if (bid.bidder.username === username) {
+                    x.push(auction)
+                }
+            });
+        });
+        callback(null, x)
     }
     return {
-        getAuctions: (uri, method, callback) => getAllAuctions(uri, method, callback),
-        getAuctionByID: (uri, method, id, callback) => getAuction(uri, method, id, callback),
-        createAuctions: (uri, method, flight, callback) => createNewAuctions(uri, method, flight, callback),
-        bidOnAuction: (uri, method, idAuction, bid ,callback) => bidOnAuctionImpl(uri, method, idAuction, bid ,callback)
+        getAuctions: (callback) => getAllAuctions("/auctions", "GET", callback),
+        getActiveAuctions: (username, callback) => getAuctionsPerUser("/accounts/"+username+"/auctions", "GET", username, callback),
+        getAuctionByID: (id, callback) => getAuction(uri, "GET", id, callback),
+        createAuctions: (airline,flight, callback) => createNewAuctions("/airlines/"+airline+"/flights", "POST", flight, callback),
+        bidOnAuction: (idAuction, bid, callback) => bidOnAuctionImpl("/auctions/"+idAuction, "PUT", idAuction, bid, callback)
     }
 })(); 

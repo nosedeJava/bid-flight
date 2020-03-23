@@ -53,9 +53,9 @@ var apimockLogin = (function () {
         callback(null, "incrementado")
     }
     return {
-        createAirline: (uri, method, airline, callback) => createNewAirline(uri, method, airline, callback),
-        createBidder: (uri, method, bidder, callback) => createNewBidder(uri, method, bidder, callback),
-        loginBidder: (uri, method, mail, password, callback) => logBidder(uri, method, mail, password, callback),
-        putMoreBalance:(uri,method,mail,balance,callback)=> incrementBalance(uri,method,mail,balance,callback)
+        createAirline: (airline, callback) => createNewAirline("/airlines", "POST", airline, callback),
+        createBidder: (bidder, callback) => createNewBidder("/accounts", "POST", bidder, callback),
+        loginBidder: (mail, password, callback) => logBidder("login", "POST", mail, password, callback),
+        putMoreBalance:(username,mail,balance,callback)=> incrementBalance("/accounts/"+username,"PUT",mail,balance,callback)
     }
 })();

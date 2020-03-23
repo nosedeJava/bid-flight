@@ -1,11 +1,11 @@
-/*post date in format 12-04-2020 18:12 and receive in format */
+
 var apimockFlights = (function () {
     var flights = []
     flights.push({
         airline: {
             name: "Avianca"
         },
-        takeoffdate: "",
+        takeoffdate: "12-01-2020 18:12",
         duration: 12,
         source: "Bogota, Colombia",
         destiny: "Paris, France",
@@ -30,12 +30,12 @@ var apimockFlights = (function () {
         console.log(uri + " " + method)
         console.log(id)
         console.log(flights[id])
-        callback(null,flights[id])
+        callback(null, flights[id])
     }
     return {
-        getFlightByID: (uri, method, id, callback) => getFlight(uri, method, id, callback),
-        createFlight: (uri, method, flight, callback) => pushFlight(uri, method, flight, callback),
-        getFlights: (uri, method, callback) => getAllFlights(uri, method, callback)
+        getFlightByID: (id, callback) => getFlight("/flights/" + id, "GET", id, callback),
+        createFlight: (airline, flight, callback) => pushFlight("/airlines/" + airline + "/flights", "POST", flight, callback),
+        getFlights: (callback) => getAllFlights("/airlines/" + airline + "/flights", "GET", callback)
     }
 
 })();
