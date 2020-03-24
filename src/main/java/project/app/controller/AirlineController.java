@@ -14,7 +14,6 @@ import project.app.services.AirlineServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import project.app.services.BidderServices;
 
 /**
  * BidFlightController
@@ -23,7 +22,7 @@ import project.app.services.BidderServices;
 public class AirlineController {
 
     @Autowired
-    AirlineServices airlineServices;
+    private AirlineServices airlineServices;
 
 
 

@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 @RequestMapping("/auctions")
 public class AuctionController {
     @Autowired
-    AuctionServices auctionServices;
+    private AuctionServices auctionServices;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<?> getAuctions() {
