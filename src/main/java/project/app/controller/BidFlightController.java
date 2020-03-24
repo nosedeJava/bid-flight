@@ -249,6 +249,16 @@ public class BidFlightController {
 
 
 
+    
 
+
+
+    // Test
+    /*
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ResponseEntity<?> getIndex(){
+        return null;
+    }
+    */
 
 }

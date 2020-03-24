@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -38,10 +39,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http
         .logout()
         .and()
-        .requiresChannel()
-        .anyRequest()
-        .requiresSecure()
-        .and()
         .csrf().disable()
         .cors().disable()
         .formLogin()
@@ -55,14 +52,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
           .antMatchers("/airlines**").hasRole("AIRLINE")
           .antMatchers("/airlines/**").hasRole("AIRLINE")
           .antMatchers("/auctions*").permitAll()
+          .antMatchers(HttpMethod.POST, "/accounts").permitAll()
+          .antMatchers("/accounts**").hasRole("BIDDER")
           .antMatchers("/login*").permitAll()
-          .anyRequest().authenticated()
+          .antMatchers("/about-us.html").permitAll()
+          .antMatchers("/","/index.html").permitAll()
+          .antMatchers("/register.html").permitAll()
           .and()
           .formLogin()
           .loginPage("/login.html")
           .loginProcessingUrl("/perform_login")
           .defaultSuccessUrl("/auction.html", true)
-          
           .and()
           .logout()
           .logoutUrl("/perform_logout")
