@@ -54,7 +54,7 @@ var apimockAuction = (function () {
         duedate: "12-01-2020 8:12",
         bids: []
     })
-    let getAllAuctions = (filtros, callback) => {
+    let getAllAuctions = (filters, callback) => {
         callback(null, auctions)
     }
     let createNewAuctions = (flight, callback) => {
@@ -83,7 +83,7 @@ var apimockAuction = (function () {
         callback(null, x)
     }
     return {
-        getAuctions: (filtros, callback) => getAllAuctions([],callback),
+        getAuctions: (filters, callback) => getAllAuctions(filters,callback),
         getActiveAuctions: (username, callback) => getAuctionsPerUser(username, callback),
         getAuctionByID: (id, callback) => getAuction( id, callback),
         createAuctions: (airline, flight, callback) => createNewAuctions(flight, callback)
