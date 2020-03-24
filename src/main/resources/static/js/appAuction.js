@@ -27,7 +27,7 @@ var appAuction = (function (persistenceAuction, persistenceFlights) {
 
     }
     let getAndTransformAllAuctions = () => {
-        persistenceAuction.getAuctions((err, res) => {
+        persistenceAuction.getAuctions([],(err, res) => {
             if (err) {
                 alert(err)
             } else {
