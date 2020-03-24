@@ -1,6 +1,7 @@
 package project.app.services;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -99,6 +100,7 @@ public class AirlineServices {
                 ticket.setFlight(null);
             }
         }
+        flights = filterByDate(flights);
         return flights;
     }
     
@@ -177,14 +179,34 @@ public class AirlineServices {
 
 
 
-    /*private Set<Flight> filterByDate(Set<Flight> flights){
+    public Flight getFlightById(int id) throws FlightNotFound {
+        Flight flightResult = null;
+        Flight flightDB = flightRepository.findById(id);
+        if(flightDB == null){
+            throw new FlightNotFound("Vuelo no encontrado");
+        }
+        // Control para la recurrencia infinita
+        for (Ticket ticket : flightDB.getTickets()) {
+            ticket.setFlight(null);
+        }
+        flightResult = flightDB;
+        return flightResult;
+    }
+
+
+    /**
+     * Filtro para las fechas.
+     * @param flights
+     * @return
+     */
+    private Set<Flight> filterByDate(Set<Flight> flights){
         Date today = new Date(System.currentTimeMillis());
-        for (Auction auction : auctions) {
-            Date auctionDate = auction.getDueDate();
-            if(today.compareTo(auctionDate)>=0){
-                auctions.remove(auction);
+        for (Flight flight : flights) {
+            Date flightDate = flight.getTakeoffdate();
+            if(today.compareTo(flightDate)>=0){
+                flights.remove(flight);
             }
         }
-        return auctions;
-    }*/
+        return flights;
+    }
 }
