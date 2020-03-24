@@ -6,10 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import project.app.model.Bidder;
+import project.app.model.Role;
 import project.app.services.BidderServices;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @RestController
@@ -26,6 +29,7 @@ public class BidderController {
     public ResponseEntity<?> addAccount(@RequestBody Bidder bidder){
         try{
             bidder.setPassword(passwordEncoder.encode(bidder.getPassword()));
+            bidder.setRole(Role.BIDDER);
             bidderServices.addAccount(bidder);
             return new ResponseEntity<>(HttpStatus.CREATED);
 
@@ -71,5 +75,13 @@ public class BidderController {
         }
 
     }
+
+
+    /*@RequestMapping(value = "/sessionID", method = RequestMethod.GET)
+    public ResponseEntity<?> getSessionID(HttpServletRequest request){
+        //Bidder bidder = (Bidder) request.getSession().getAttribute("Bidder");
+        System.out.println(request.getSession().getAttribute("username"));
+        return new ResponseEntity<>("Prueba",HttpStatus.ACCEPTED);
+    }*/
 
 }

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -49,15 +48,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http
           .csrf().disable()
           .authorizeRequests()
-          .antMatchers("/airlines/**").hasRole("AIRLINE")
-          .antMatchers("/auctions*").permitAll()
+          .antMatchers("/auctions**").hasAnyAuthority("BIDDER","AIRLINE")
+          .antMatchers("/accounts").permitAll()
+          .antMatchers("/accounts/**").hasAuthority("BIDDER")
+          .antMatchers("/airlines").permitAll()
+          .antMatchers("/airlines/**").hasAuthority("AIRLINE")
+          .antMatchers("/flights**").hasAnyAuthority("BIDDER","AIRLINE")
+          .antMatchers("/particular-auction.html").hasAuthority("BIDDER")
+          .antMatchers("/auction.html").hasAuthority("BIDDER")
           .antMatchers("/airlines.html").permitAll()
-          .antMatchers(HttpMethod.POST, "/accounts").permitAll()
-          .antMatchers("/accounts**").hasRole("BIDDER")
-          .antMatchers("/login*").permitAll()
+          .antMatchers("/login**").permitAll()
           .antMatchers("/about-us.html").permitAll()
           .antMatchers("/","/index.html").permitAll()
-          .antMatchers("/register.html").permitAll()
+          .antMatchers("/register**").permitAll()
           .and()
           .formLogin()
           .loginPage("/login.html")
