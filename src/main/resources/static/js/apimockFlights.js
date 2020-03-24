@@ -9,7 +9,9 @@ var apimockFlights = (function () {
         duration: 12,
         source: "Bogota, Colombia",
         destiny: "Paris, France",
-        layovers: ["asd"],
+        layovers: [{
+            airport:"El dorado, BOG-COL"
+        }],
         tickets: [{
             type: "Economic",
             price: 123.12,

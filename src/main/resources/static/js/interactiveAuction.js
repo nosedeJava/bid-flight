@@ -11,13 +11,12 @@ $(document).ready(function () {
         $("#list-flights").html("");
         $("#auctionsButton").removeClass("active")
         $("#activeAuctionsButton").addClass("active")
-        //hace falta un username que es el man que se logea
-        //let username= ?
-        appAuction.showActiveAuctions(/*username*/)
+        appAuction.showActiveAuctions(localStorage.getItem('username'))
         return false;
     })
     $(".particularAuction").click(function(){
-        //hace falta redirigir
-        alert(this.id)
+        localStorage.setItem('auctionId', this.id.split("-")[1])
+        window.location.href="/particular-auction.html"
     })
+    
 });
