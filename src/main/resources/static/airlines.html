@@ -12,7 +12,7 @@
     <title>Bid flight</title>
 </head>
 
-<body>
+<body  >
     <nav class="navbar navbar-default  navbar-expand navbar-dark fixed-top"
         style="background: linear-gradient(to left, #396afc, #2948ff);">
         <a href="index.html" class="navbar-brand">Bid flight</a>
@@ -27,18 +27,39 @@
         <ul class="navbar-nav ml-auto">
             <li class="navbar-item">
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="login.html" class="btn btn-info stretched-link">Log in</a>
-                    <a href="register.html" class="btn btn-secondary stretched-link">Sign up</a>
+                    <h3 class="text-white">Welcome airline!</h3>
                 </div>
             </li>
         </ul>
     </nav>
-
-    <div class="container text-center" style="margin-top: 20rem;">
-        <p>
-            This page is under construction
-        </p>
+    <div class="container col-lg-8 mx-auto" style="margin-top: 11rem;">
+        <div class="card" style="background:#2948ff;" >
+            <div class="row">
+                <div class="col-7">
+                    <img class="card-img rounded" src="img/img6.jpeg" alt="Card image cap">
+                </div>
+                <div class="col-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center text-white">Do you want to work with us?</h5>
+                        <div class="row py-2">
+                            <div class="col text-center">
+                                <button type="button" onclick='window.location.href = "/login-airline.html";'
+                                    class="btn btn-dark">Log in for airlines</button>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col text-center">
+                                <button type="button" onclick='window.location.href = "/register-airline.html";'
+                                    class="btn btn-secondary">You don't have an airline account?</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
