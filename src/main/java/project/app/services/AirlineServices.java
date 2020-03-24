@@ -178,7 +178,12 @@ public class AirlineServices {
     }
 
 
-
+    /**
+     * Retorna un vuelo especifico
+     * @param id Identificador
+     * @return Vuelo solicitado
+     * @throws FlightNotFound En caso de no encontrar el vuelo
+     */
     public Flight getFlightById(int id) throws FlightNotFound {
         Flight flightResult = null;
         Flight flightDB = flightRepository.findById(id);

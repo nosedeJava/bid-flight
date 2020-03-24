@@ -30,22 +30,10 @@ public class Bidder {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "bidder")
     private Set<Bid> bids;
+    private Role role = Role.BIDDER;
 
     public Bidder(){
 
-    }
-
-    public Bidder(String mail, String password, String names, String lastnames, String username, String documenttype,
-            String document, float balance, Set<Payment> payments) {
-        this.mail = mail;
-        this.password = password;
-        this.names = names;
-        this.lastnames = lastnames;
-        this.username = username;
-        this.documenttype = documenttype;
-        this.document = document;
-        this.balance = balance;
-        this.payments = payments;
     }
 
     public String getMail() {
@@ -133,6 +121,14 @@ public class Bidder {
 
     public void setBids(Set<Bid> bids) {
         this.bids = bids;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import project.app.exception.AuctionNotFound;
 import project.app.model.Auction;
+import project.app.model.Bid;
+import project.app.model.Bidder;
 import project.app.model.Flight;
 import project.app.model.Ticket;
 import project.app.persistence.AuctionRepository;
@@ -39,6 +41,7 @@ public class AuctionServices {
         // Para evitarnos recurrencias infinitas a la hora de mandar la información como string, debemos limpiar algunos datos.
         for (Auction auction : auctions) {
             auction.getTicket().getFlight().setTickets(null);
+            auction.setBids(null);
         }
         auctions = filterByDate(auctions);
         return auctions;
@@ -77,7 +80,10 @@ public class AuctionServices {
             throw new AuctionNotFound("Subasta no encontrada");
         }
         auction.getTicket().getFlight().setTickets(null);
-
+        for (Bid bid : auction.getBids()) {
+            Bidder bidder = bid.getBidder();
+            bidder.setBalance(0);   bidder.setBids(null);   bidder.setDocument(null);   bidder.setDocumenttype(null);   bidder.setLastnames(null);  bidder.setNames(null);  bidder.setPassword(null);   bidder.setPayments(null);
+        }
         return auction;
     }
 

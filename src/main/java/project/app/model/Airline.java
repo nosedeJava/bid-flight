@@ -16,7 +16,8 @@ public class Airline {
     private String phone;
     private String web;
     private String information;
-
+    private Role role = Role.AIRLINE;
+    
     public Airline() {
     }
 
@@ -50,6 +51,14 @@ public class Airline {
 
     public void setInformation(String information) {
         this.information = information;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     

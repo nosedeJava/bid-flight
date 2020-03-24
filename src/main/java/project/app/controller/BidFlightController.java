@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.*;
 import project.app.model.Airline;
 import project.app.model.Bidder;
 import project.app.model.Flight;
+import project.app.model.Role;
 import project.app.services.AirlineServices;
 import project.app.services.AuctionServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import project.app.services.BidderServices;
 
 /**
@@ -24,11 +27,16 @@ import project.app.services.BidderServices;
 public class BidFlightController {
 
     @Autowired
-    AuctionServices auctionServices;
+    private AuctionServices auctionServices;
+
     @Autowired
-    BidderServices bidderServices;
+    private BidderServices bidderServices;
+
     @Autowired
-    AirlineServices airlineServices;
+    private AirlineServices airlineServices;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @RequestMapping(value = "/auctions", method = RequestMethod.GET)
     //@GetMapping("/auctions")
@@ -85,6 +93,8 @@ public class BidFlightController {
     @RequestMapping(value = "/accounts", method = RequestMethod.POST)
     public ResponseEntity<?> addAccount(@RequestBody Bidder bidder){
         try{
+            bidder.setRole(Role.BIDDER);
+            bidder.setPassword(passwordEncoder.encode(bidder.getPassword()));
             bidderServices.addAccount(bidder);
             return new ResponseEntity<>(HttpStatus.CREATED);
 

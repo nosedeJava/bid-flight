@@ -1,4 +1,4 @@
-package project.app.Config;
+package project.app.config;
 
 import org.springframework.aop.framework.AopInfrastructureBean;
 /*import com.google.common.base.Predicate;
