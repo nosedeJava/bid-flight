@@ -11,7 +11,7 @@ var apiclientFlights = (function () {
                 callback(null, data)
             },
             error: function (data) {
-                callback("error", [])
+                callback("error al crear vuelos", [])
             }
         });
     }
@@ -23,12 +23,11 @@ var apiclientFlights = (function () {
                 callback(null, data)
             },
             error: function (data) {
-                callback("error", [])
+                callback("error al conseguir todos los vuelos", [])
             }
         });
     }
     let getFlight = (id, callback) => {
-        console.log(id)
         $.ajax({
             url: "/flights/" + id,
             type: "GET",
@@ -36,7 +35,7 @@ var apiclientFlights = (function () {
                 callback(null, data)
             },
             error: function (data) {
-                callback("error", {})
+                callback("error al conseguir un vuelo en particular", {})
             }
         });
     }

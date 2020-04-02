@@ -41,9 +41,11 @@ public class AuctionServices {
         // Para evitarnos recurrencias infinitas a la hora de mandar la información como string, debemos limpiar algunos datos.
         for (Auction auction : auctions) {
             auction.getTicket().getFlight().setTickets(null);
-            auction.setBids(null);
+            for(Bid bid:auction.getBids()){
+                bid.setAuction(null);
+            }
         }
-        auctions = filterByDate(auctions);
+        //auctions = filterByDate(auctions);
         return auctions;
     }
     

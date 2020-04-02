@@ -1,34 +1,18 @@
 var apiclientAuction = (function () {
     let getAllAuctions = (filtros, callback) => {
-        console.log(filtros)
         $.ajax({
             url: "/auctions",
             type: "GET",
-            success: function(data){ 
+            success: function(data){
+                console.log(data)
                 callback(null,data)
             },
             error: function(data) {
-                callback("error",[])
-            }
-        });
-    }
-    let createNewAuctions = (flight, callback) => {
-        console.log(flight)
-        $.ajax({
-            url: "/auctions",
-            type: "POST",
-            data: JSON.stringify(flight),
-            contentType: "application/json",
-            success: function(data){ 
-                callback(null,data)
-            },
-            error: function(data) {
-                callback("error",[])
+                callback("error al traer todos los auction",[])
             }
         });
     }
     let getAuction = (id, callback) => {
-        console.log(id)
         $.ajax({
             url: "/auctions/"+id,
             type: "GET",
@@ -36,12 +20,11 @@ var apiclientAuction = (function () {
                 callback(null,data)
             },
             error: function(data) {
-                callback("error",{})
+                callback("error al conseguir un auction en especifico",{})
             }
         });
     }
     let getAuctionsPerUser = (username, callback) => {
-        console.log(username)
         $.ajax({
             url: "/accounts/"+username+"/auctions",
             type: "GET",
@@ -49,7 +32,7 @@ var apiclientAuction = (function () {
                 callback(null,data)
             },
             error: function(data) {
-                callback("error",[])
+                callback("error al conseguir las subastas activas",[])
             }
         });
     }

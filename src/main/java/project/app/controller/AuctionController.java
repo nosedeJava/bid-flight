@@ -19,6 +19,7 @@ public class AuctionController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<?> getAuctions() {
         try{
+            
             return new ResponseEntity<>(auctionServices.getAllAuctions(), HttpStatus.ACCEPTED);
         }catch(Exception ex){
             Logger.getLogger(AuctionController.class.getName()).log(Level.SEVERE, null, ex);

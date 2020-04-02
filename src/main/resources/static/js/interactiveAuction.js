@@ -14,9 +14,6 @@ $(document).ready(function () {
         appAuction.showActiveAuctions(localStorage.getItem('username'))
         return false;
     })
-    $(".particularAuction").click(function(){
-        localStorage.setItem('auctionId', this.id.split("-")[1])
-        window.location.href="/particular-auction.html"
-    })
+    
     
 });
