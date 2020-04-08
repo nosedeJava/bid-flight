@@ -45,8 +45,8 @@ var apiclientLogin = (function () {
         });
     }
     return {
-        createAirline: (airline, callback) => createNewAirline("/airlines", "POST", airline, callback),
-        createBidder: (bidder, callback) => createNewBidder("/accounts", "POST", bidder, callback),
+        createAirline: (airline, callback) => createNewAirline( airline, callback),
+        createBidder: (bidder, callback) => createNewBidder(bidder, callback),
         putMoreBalance: (username, balance, callback) => incrementBalance(username, balance, callback)
     }
 })();

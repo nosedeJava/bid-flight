@@ -35,7 +35,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             Bidder bidder = bidderRepository.findByUsername(authentication.getName());
             if(bidder == null) throw new ServletException("Usuario inexistente");
             //request.getSession().setAttribute("username", bidder.getUsername());
-            response.sendRedirect("auction.html");
+            response.sendRedirect("auctions.html");
         }else{
             response.sendRedirect("airlines.html");
         }

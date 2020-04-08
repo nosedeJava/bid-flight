@@ -14,7 +14,7 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
         let dateCute = take_off_date.split("-")
         take_off_date = dateCute[0] + " " + months[parseInt(dateCute[1], 10) - 1] + " " + dateCute[2]
         dateCute = auction.dueDate.split("-")
-        due_date = dateCute[0] + " " + months[parseInt(dateCute[1], 10) - 1] + " " + dateCute[2]
+        due_date = dateCute[0] + " " + months[parseInt(dateCute[1], 10) - 1] + " " + dateCute[2].split("T")[0]+" "+dateCute[2].split("T")[1].split(":")[0]+":"+dateCute[2].split("T")[1].split(":")[1]
         $('#source').text(source)
         $('#destiny').text(destiny)
         $('#layover').text(layover)
