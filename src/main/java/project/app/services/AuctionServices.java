@@ -129,7 +129,7 @@ public class AuctionServices {
      * 
      * @param auctions
      * @return
-     */
+     
     private Set<Auction> filterByDate(Set<Auction> auctions){
         Date today = new Date(System.currentTimeMillis());
         for (Auction auction : auctions) {
@@ -139,6 +139,5 @@ public class AuctionServices {
             }
         }
         return auctions;
-    }
-
+    }*/
 }

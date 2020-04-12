@@ -12,7 +12,6 @@ import project.app.services.BidderServices;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.servlet.http.HttpServletRequest;
 
 
 @RestController
