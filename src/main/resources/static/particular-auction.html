@@ -13,7 +13,7 @@
     <title>Bid flight</title>
 </head>
 
-<body style="margin-bottom: 30px;">
+<body style="margin-bottom: 30px; ">
     <nav class="navbar navbar-default  navbar-expand navbar-dark fixed-top"
         style="background: linear-gradient(to left, #396afc, #2948ff);">
         <a href="index.html" class="navbar-brand">Bid flight</a>
@@ -76,12 +76,13 @@
                     </div>
                     <div class="card-footer text-muted text-center ">
 
-                        <p> This auction is gonna end at <span id="due-date"></span> <br> <a href="auctions.html" class="stretched-link">You can go back</a> and see more auctions</p>
+                        <p> This auction is gonna end at <span id="due-date"></span> <br> <a href="auctions.html"
+                                class="stretched-link">You can go back</a> and see more auctions</p>
                         <button type="button" class="btn btn-primary" id="bid-push" data-toggle="modal"
                             data-target="#myModal">Want to bid?</button>
-
-                        <div class="modal fade" id="myModal">
-                            <div class="modal-dialog">
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">This flight could be yours</h5>
@@ -90,10 +91,14 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Aqui pondria mi implementacion de puja, si la tuviera.jpg</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                        <div class="row">
+                                            <div class="col-9">
+                                                <input class="form-control" type="text" placeholder="Amount">
+                                            </div>
+                                            <div class="col-3">
+                                                <button type="button" class="btn btn-dark btn-block" data-dismiss="modal">Bid</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
