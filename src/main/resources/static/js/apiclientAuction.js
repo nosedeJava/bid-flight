@@ -1,7 +1,7 @@
 var apiclientAuction = (function () {
     let getAllAuctions = (filtros, callback) => {
         $.ajax({
-            url: "/auctions",
+            url: "/auctions"+filtros,
             type: "GET",
             success: function(data){
                 console.log(data)
