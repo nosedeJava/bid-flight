@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import project.app.model.Flight;
 import project.app.services.AuctionServices;
 
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,24 +18,25 @@ public class AuctionController {
     private AuctionServices auctionServices;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<?> getAuctions() {
-        try{
-            
-            return new ResponseEntity<>(auctionServices.getAllAuctions(null), HttpStatus.ACCEPTED);
-        }catch(Exception ex){
+    public ResponseEntity<?> getAuctions(@RequestParam Map<String, String> parameters) {
+        try {
+            for (String parameter : parameters.keySet()) {
+                System.out.println(parameter + " " + parameters.get(parameter));
+            }
+            return new ResponseEntity<>(auctionServices.getAllAuctions(parameters), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
             Logger.getLogger(AuctionController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error al localizar la subasta", HttpStatus.NOT_FOUND);
         }
     }
 
-    //por reparar
+    // por reparar
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity<?> addFlight(@RequestBody Flight flight){
-        try{
+    public ResponseEntity<?> addFlight(@RequestBody Flight flight) {
+        try {
             auctionServices.addAuction(flight);
             return new ResponseEntity<>(HttpStatus.CREATED);
-
-        }catch(Exception ex){
+        } catch (Exception ex) {
             Logger.getLogger(AuctionController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error en la creacion", HttpStatus.FORBIDDEN);
         }
@@ -43,9 +45,9 @@ public class AuctionController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getAuctionbById(@PathVariable("id") int id) {
-        try{
+        try {
             return new ResponseEntity<>(auctionServices.getAuctionById(id), HttpStatus.ACCEPTED);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             Logger.getLogger(AuctionController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error al localizar subasta", HttpStatus.NOT_FOUND);
         }
@@ -53,16 +55,13 @@ public class AuctionController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> DeleteAuctions(@PathVariable("id") int id) {
-        try{
+        try {
             auctionServices.deleteAuctionByid(id);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             Logger.getLogger(AuctionController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error al localizar subasta", HttpStatus.NOT_FOUND);
         }
     }
-
-
-
 
 }

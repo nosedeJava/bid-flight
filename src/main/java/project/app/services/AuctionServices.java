@@ -3,6 +3,8 @@ package project.app.services;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -41,69 +43,91 @@ public class AuctionServices {
     public Set<Auction> getAllAuctions(Map<String, String> filters) {
         Set<Auction> auctions = new HashSet<>();
         auctions.addAll((Collection<? extends Auction>) auctionRepository.findAll());
-        // Para evitarnos recurrencias infinitas a la hora de mandar la información como string, debemos limpiar algunos datos.
+        // Para evitarnos recurrencias infinitas a la hora de mandar la información como
+        // string, debemos limpiar algunos datos.
         for (Auction auction : auctions) {
             auction.getTicket().getFlight().setTickets(null);
-            for(Bid bid:auction.getBids()){
+            for (Bid bid : auction.getBids()) {
                 bid.setAuction(null);
             }
         }
-        
+        completeFiltering(auctions, filters);
         return auctions;
     }
-    
+
     /**
      * 
      * @param auctions
      * @param filters
      * @return
      */
-    private Set<Auction> completeFiltering(Set<Auction> auctions, Map<String, String> filters){
+    private Set<Auction> completeFiltering(Set<Auction> auctions, Map<String, String> filters) {
         List<Auction> newAuctions = new ArrayList<>();
         for (Auction auction : auctions) {
             boolean valid = true;
-            for (String filter : filters.keySet()) {
-                if(filter.equals("source")){
-                    valid = valid&&auction.getTicket().getFlight().getSource().contains(filters.get(filter));
-                    continue;
-                }
-                if(filter.equals("destiny")){
-                    valid = valid&&auction.getTicket().getFlight().getDestiny().contains(filters.get(filter));
-                    continue;
-                }
-                if(filter.equals("flighttype")){
-                    valid = valid&&auction.getTicket().getType().equals(filters.get(filter));
-                    continue;
-                }
-                if(filter.equals("bagtype")){
-                    valid = valid&&auction.getTicket().getBagtype().equals(filters.get(filter));
-                    continue;
-                }
+            if (filters.keySet().contains("source")) {
+                valid = valid && auction.getTicket().getFlight().getSource().contains(filters.get("source"));
             }
-            if(valid){
+            if (filters.keySet().contains("destiny")) {
+                valid = valid && auction.getTicket().getFlight().getDestiny().contains(filters.get("destiny"));
+            }
+            if (filters.keySet().contains("flighttype")) {
+                valid = valid && auction.getTicket().getType().equals(filters.get("flighttype"));
+            }
+            if (filters.keySet().contains("bagtype")) {
+                valid = valid && auction.getTicket().getBagtype().equals(filters.get("bagtype"));
+            }
+            if (valid) {
                 newAuctions.add(auction);
             }
         }
         // Ahora ordenamos
-        if(filters.containsKey("orderby")){
-            order(filters.get("orderby"), newAuctions);
+        if (filters.containsKey("orderby")) {
+            newAuctions = order(filters.get("orderby"), newAuctions);
         }
-
-        return null;
+        Set<Auction> result = new HashSet<>();
+        result.addAll(newAuctions);
+        return result;
     }
 
-
-    private List<Auction> order(String param, List<Auction> auctions){
-        if(param.equals("price")){
-            
-        }
-        return null;
-    }
     /**
-     * Recibe un vuelo que contiene una serie de tickets en busca de crear sus subastas
+     * 
+     * @param param
+     * @param auctions
+     * @return
+     */
+    private List<Auction> order(String param, List<Auction> auctions) {
+        if (param.equals("price")) {
+            Collections.sort(auctions, new Comparator<Auction>() {
+                @Override
+                public int compare(Auction o1, Auction o2) {
+                    return Float.compare(o1.getTicket().getPrice(), o2.getTicket().getPrice());
+                }
+            });
+        }
+        else if(param.equals("duration")){
+            Collections.sort(auctions, new Comparator<Auction>() {
+                @Override
+                public int compare(Auction o1, Auction o2) {
+                    return Integer.compare(o1.getTicket().getFlight().getDuration(), o2.getTicket().getFlight().getDuration());
+                }
+            });
+        }
+        else if(param.equals("takeoffdate")){
+            /**
+            * TO DO
+            */
+        }
+        return auctions;
+    }
+
+    /**
+     * Recibe un vuelo que contiene una serie de tickets en busca de crear sus
+     * subastas
+     * 
      * @param flight Vuelo que contiene una serie de tickets dentro.
      */
-    public void addAuction(Flight flight){
+    public void addAuction(Flight flight) {
         // Salvamos el vuelo primero
         flightRepository.save(flight);
         Date dueDate = calculateDate(flight);
@@ -116,38 +140,46 @@ public class AuctionServices {
 
     /**
      * Obtiene una subasta basandose en una busqueda por ID
+     * 
      * @param id Identificador de una subasta
      * @return Subasta asociada al identificador indicado
-     * @throws AuctionNotFound En caso de no encontrar la subasta se lanzará esta excepción
+     * @throws AuctionNotFound En caso de no encontrar la subasta se lanzará esta
+     *                         excepción
      */
-    public Auction getAuctionById(int id) throws AuctionNotFound{
+    public Auction getAuctionById(int id) throws AuctionNotFound {
         Auction auction = null;
-        try{
+        try {
             auction = auctionRepository.findById(id);
-            if(auction==null){
+            if (auction == null) {
                 throw new AuctionNotFound("Subasta no encontrada");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new AuctionNotFound("Subasta no encontrada");
         }
         auction.getTicket().getFlight().setTickets(null);
         for (Bid bid : auction.getBids()) {
             Bidder bidder = bid.getBidder();
-            bidder.setBalance(0);   bidder.setBids(null);   bidder.setDocument(null);   bidder.setDocumenttype(null);   bidder.setLastnames(null);  bidder.setNames(null);  bidder.setPassword(null);   bidder.setPayments(null);
+            bidder.setBalance(0);
+            bidder.setBids(null);
+            bidder.setDocument(null);
+            bidder.setDocumenttype(null);
+            bidder.setLastnames(null);
+            bidder.setNames(null);
+            bidder.setPassword(null);
+            bidder.setPayments(null);
         }
         return auction;
     }
 
     /**
      * Elimina una subasta basandose en una busqueda por ID
+     * 
      * @param id
      * @throws AuctionNotFound
      */
-    public void deleteAuctionByid(int id) throws AuctionNotFound{
+    public void deleteAuctionByid(int id) throws AuctionNotFound {
 
     }
-
-
 
     /**
      * TO DO - Remove
@@ -157,16 +189,16 @@ public class AuctionServices {
      * TO DO - Put
      */
 
-
-
     /**
-     * Metodo interno para el calculo de las subastas, originalmente quemado a 10h antes de la salida del vuelo.
+     * Metodo interno para el calculo de las subastas, originalmente quemado a 10h
+     * antes de la salida del vuelo.
+     * 
      * @param flight Vuelo al que se desea crearle sus subastas.
      * @return Fecha final seleccionada para las subastas de los tiquetes.
      */
-    private Date calculateDate(Flight flight){
+    private Date calculateDate(Flight flight) {
         Date dueDate = null;
-        Date flightDate = flight.getTakeoffdate(); 
+        Date flightDate = flight.getTakeoffdate();
         Calendar cl = Calendar.getInstance();
         cl.setTime(flightDate);
         cl.add(Calendar.HOUR, -10);
@@ -178,15 +210,11 @@ public class AuctionServices {
      * 
      * @param auctions
      * @return
-     
-    private Set<Auction> filterByDate(Set<Auction> auctions){
-        Date today = new Date(System.currentTimeMillis());
-        for (Auction auction : auctions) {
-            Date auctionDate = auction.getDueDate();
-            if(today.compareTo(auctionDate)>=0){
-                auctions.remove(auction);
-            }
-        }
-        return auctions;
-    }*/
+     * 
+     *         private Set<Auction> filterByDate(Set<Auction> auctions){ Date today
+     *         = new Date(System.currentTimeMillis()); for (Auction auction :
+     *         auctions) { Date auctionDate = auction.getDueDate();
+     *         if(today.compareTo(auctionDate)>=0){ auctions.remove(auction); } }
+     *         return auctions; }
+     */
 }
