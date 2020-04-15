@@ -23,7 +23,7 @@ public class AuctionController {
             for (String parameter : parameters.keySet()) {
                 System.out.println(parameter + " " + parameters.get(parameter));
             }
-            return new ResponseEntity<>(auctionServices.getAllAuctions(), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(auctionServices.getAllAuctions(parameters), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AuctionController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error al localizar la subasta", HttpStatus.NOT_FOUND);
