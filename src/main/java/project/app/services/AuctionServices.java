@@ -66,15 +66,25 @@ public class AuctionServices {
         for (Auction auction : auctions) {
             boolean valid = true;
             if (filters.keySet().contains("source")) {
+                System.out.println("Entre chavales - SOURCE");
                 valid = valid && auction.getTicket().getFlight().getSource().contains(filters.get("source"));
             }
             if (filters.keySet().contains("destiny")) {
+                System.out.println("Entre chavales - DESTINY 2 JAJA SALU2");
+                System.out.println(valid);
+                System.out.println(filters.get("destiny"));
+                System.out.println(auction.getTicket().getFlight().getDestiny());
+                System.out.println(auction.getTicket().getFlight().getDestiny().contains(filters.get("destiny")));
                 valid = valid && auction.getTicket().getFlight().getDestiny().contains(filters.get("destiny"));
+                System.out.println("-----------------------------------------------------------");
+                System.out.println(valid);
             }
             if (filters.keySet().contains("flighttype")) {
+                System.out.println("Entre chavales - TYPE");
                 valid = valid && auction.getTicket().getType().equals(filters.get("flighttype"));
             }
             if (filters.keySet().contains("bagtype")) {
+                System.out.println("Entre chavales - BAG");
                 valid = valid && auction.getTicket().getBagtype().equals(filters.get("bagtype"));
             }
             if (valid) {
@@ -83,7 +93,7 @@ public class AuctionServices {
         }
         // Ahora ordenamos
         if (filters.containsKey("orderby")) {
-            newAuctions = order(filters.get("orderby"), newAuctions);
+            order(filters.get("orderby"), newAuctions);
         }
         Set<Auction> result = new HashSet<>();
         result.addAll(newAuctions);
@@ -97,7 +107,7 @@ public class AuctionServices {
      * @return
      */
     private List<Auction> order(String param, List<Auction> auctions) {
-        if (param.equals("price")) {
+        if (param.equals("Price")) {
             Collections.sort(auctions, new Comparator<Auction>() {
                 @Override
                 public int compare(Auction o1, Auction o2) {
@@ -105,7 +115,7 @@ public class AuctionServices {
                 }
             });
         }
-        else if(param.equals("duration")){
+        else if(param.equals("Duration")){
             Collections.sort(auctions, new Comparator<Auction>() {
                 @Override
                 public int compare(Auction o1, Auction o2) {
@@ -113,7 +123,7 @@ public class AuctionServices {
                 }
             });
         }
-        else if(param.equals("takeoffdate")){
+        else if(param.equals("Take off date")){
             /**
             * TO DO
             */
