@@ -1,9 +1,12 @@
 package project.app.services;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +38,7 @@ public class AuctionServices {
      * 
      * @return Set con todas las subastas
      */
-    public Set<Auction> getAllAuctions() {
+    public Set<Auction> getAllAuctions(Map<String, String> filters) {
         Set<Auction> auctions = new HashSet<>();
         auctions.addAll((Collection<? extends Auction>) auctionRepository.findAll());
         // Para evitarnos recurrencias infinitas a la hora de mandar la información como string, debemos limpiar algunos datos.
@@ -45,11 +48,57 @@ public class AuctionServices {
                 bid.setAuction(null);
             }
         }
-        //auctions = filterByDate(auctions);
+        
         return auctions;
     }
     
+    /**
+     * 
+     * @param auctions
+     * @param filters
+     * @return
+     */
+    private Set<Auction> completeFiltering(Set<Auction> auctions, Map<String, String> filters){
+        List<Auction> newAuctions = new ArrayList<>();
+        for (Auction auction : auctions) {
+            boolean valid = true;
+            for (String filter : filters.keySet()) {
+                if(filter.equals("source")){
+                    valid = valid&&auction.getTicket().getFlight().getSource().contains(filters.get(filter));
+                    continue;
+                }
+                if(filter.equals("destiny")){
+                    valid = valid&&auction.getTicket().getFlight().getDestiny().contains(filters.get(filter));
+                    continue;
+                }
+                if(filter.equals("flighttype")){
+                    valid = valid&&auction.getTicket().getType().equals(filters.get(filter));
+                    continue;
+                }
+                if(filter.equals("bagtype")){
+                    valid = valid&&auction.getTicket().getBagtype().equals(filters.get(filter));
+                    continue;
+                }
+            }
+            if(valid){
+                newAuctions.add(auction);
+            }
+        }
+        // Ahora ordenamos
+        if(filters.containsKey("orderby")){
+            order(filters.get("orderby"), newAuctions);
+        }
 
+        return null;
+    }
+
+
+    private List<Auction> order(String param, List<Auction> auctions){
+        if(param.equals("price")){
+            
+        }
+        return null;
+    }
     /**
      * Recibe un vuelo que contiene una serie de tickets en busca de crear sus subastas
      * @param flight Vuelo que contiene una serie de tickets dentro.
