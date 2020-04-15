@@ -18,7 +18,7 @@ import project.app.persistence.BidderRepository;
 
 /**
  * CustomAuthenticationSuccessHandler
- */
+*/
 @Configuration
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
@@ -41,4 +41,4 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     }
 
     
-}
+} 
