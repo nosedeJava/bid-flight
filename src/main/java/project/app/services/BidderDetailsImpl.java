@@ -14,6 +14,12 @@ import project.app.model.Bidder;
 public class BidderDetailsImpl implements UserDetails {
     
     private Bidder bidder;
+    private float balance;
+    private String email;
+    private String names;
+    private String lastnames;
+    private String documenttype;
+    private String document;
     /**
      *
      */
@@ -21,6 +27,12 @@ public class BidderDetailsImpl implements UserDetails {
 
     public BidderDetailsImpl(Bidder bidder) {
         this.bidder = bidder;
+        this.balance = bidder.getBalance();
+        this.email = bidder.getMail();
+        this.names = bidder.getNames();
+        this.lastnames = bidder.getLastnames();
+        this.documenttype = bidder.getDocumenttype();
+        this.document = bidder.getDocument();
     }
 
     @Override
@@ -56,6 +68,54 @@ public class BidderDetailsImpl implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public float getBalance() {
+        return balance;
+    }
+
+    public void setBalance(float balance) {
+        this.balance = balance;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNames() {
+        return names;
+    }
+
+    public void setNames(String names) {
+        this.names = names;
+    }
+
+    public String getLastnames() {
+        return lastnames;
+    }
+
+    public void setLastnames(String lastnames) {
+        this.lastnames = lastnames;
+    }
+
+    public String getDocumenttype() {
+        return documenttype;
+    }
+
+    public void setDocumenttype(String documenttype) {
+        this.documenttype = documenttype;
+    }
+
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
     }
 
     

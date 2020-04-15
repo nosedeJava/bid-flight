@@ -3,10 +3,14 @@ package project.app.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import project.app.model.Bidder;
 import project.app.model.Role;
+import project.app.services.BidderDetailsImpl;
 import project.app.services.BidderServices;
 
 import java.util.logging.Level;
@@ -75,12 +79,11 @@ public class BidderController {
 
     }
 
-
-    /*@RequestMapping(value = "/sessionID", method = RequestMethod.GET)
-    public ResponseEntity<?> getSessionID(HttpServletRequest request){
-        //Bidder bidder = (Bidder) request.getSession().getAttribute("Bidder");
-        System.out.println(request.getSession().getAttribute("username"));
-        return new ResponseEntity<>("Prueba",HttpStatus.ACCEPTED);
-    }*/
-
+    @RequestMapping(value = "/sessionID", method = RequestMethod.GET)
+    public ResponseEntity<?> method(ModelMap model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        BidderDetailsImpl bidder = (BidderDetailsImpl) auth.getPrincipal();
+        return new ResponseEntity<>(bidder,HttpStatus.ACCEPTED);
+    }
+    
 }
