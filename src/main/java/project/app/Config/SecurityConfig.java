@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 /**
  * SecurityConfig
 */
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
@@ -52,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
           .antMatchers("/accounts").permitAll()
           .antMatchers("/accounts/**").hasAuthority("BIDDER")
           .antMatchers("/airlines").permitAll()
-          .antMatchers("/airlines/**").hasAuthority("AIRLINE")
+          .antMatchers("/airlines/**").permitAll()
           .antMatchers("/flights**").hasAnyAuthority("BIDDER","AIRLINE")
           .antMatchers("/particular-auction.html").hasAuthority("BIDDER")
           .antMatchers("/auctions.html").hasAuthority("BIDDER")
@@ -76,4 +77,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-} 
+}

@@ -32,9 +32,19 @@ public class AirlineServices {
 
     @Autowired
     private AuctionServices auctionServices;
-
-    public Airline getAirlineByName(String name){
-        return null;
+    
+    /**
+     * Retorna una aerolinea buscandola por el nombre.
+     * @param name Nombre identificador de la aerolinea.
+     * @return La aerolinea encontrada en la base de datos.
+     * @throws AirlineNotFound En caso de que la aerolinea no este dentro de la base de datos.
+     */
+    public Airline getAirlineByName(String name) throws AirlineNotFound {
+        Airline airlineDB = airlineRepository.findByName(name);
+        if(airlineDB==null){
+            throw new AirlineNotFound("Aerolinea no encontrada");
+        }
+        return airlineDB;
     }
 
     /**

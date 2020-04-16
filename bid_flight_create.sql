@@ -45,7 +45,7 @@ CREATE TABLE Bidder (
 CREATE TABLE Flight (
     id serial  NOT NULL,
     airline varchar  NOT NULL,
-    takeOffDate date  NOT NULL,
+    takeOffDate TIMESTAMP  NOT NULL,
     duration int  NOT NULL,
     source varchar  NOT NULL,
     destiny varchar  NOT NULL,

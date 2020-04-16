@@ -12,6 +12,7 @@ import project.app.persistence.BidderRepository;
 /**
  * BidderDetailsServiceImpl
  */
+
 @Service
 public class BidderDetailsServiceImpl implements UserDetailsService {
 

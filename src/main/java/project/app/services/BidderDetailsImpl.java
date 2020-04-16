@@ -11,6 +11,7 @@ import project.app.model.Bidder;
 /**
  * BidderDetailsImpl
  */
+
 public class BidderDetailsImpl implements UserDetails {
     
     private Bidder bidder;
@@ -20,9 +21,6 @@ public class BidderDetailsImpl implements UserDetails {
     private String lastnames;
     private String documenttype;
     private String document;
-    /**
-     *
-     */
     private static final long serialVersionUID = 6775216925057034028L;
 
     public BidderDetailsImpl(Bidder bidder) {

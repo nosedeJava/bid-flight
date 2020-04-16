@@ -82,5 +82,10 @@ public class Auction {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Auction [duedate=" + duedate + ", id=" + id + ", ticket=" + ticket + "]";
+    }
+
     
 }

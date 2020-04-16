@@ -20,9 +20,6 @@ public class AuctionController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<?> getAuctions(@RequestParam Map<String, String> parameters) {
         try {
-            for (String parameter : parameters.keySet()) {
-                System.out.println(parameter + " " + parameters.get(parameter));
-            }
             return new ResponseEntity<>(auctionServices.getAllAuctions(parameters), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AuctionController.class.getName()).log(Level.SEVERE, null, ex);
