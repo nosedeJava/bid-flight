@@ -12,8 +12,19 @@ $(document).ready(function () {
                 $(".username").text(data.username)
                 localStorage.setItem('username',data.username )
                 $("#btnLogout").on("click",function(){
-
+                    $.ajax({
+                        url: "/perform-logout",
+                        type: "POST",
+                        success: function (data) {
+                            callback(null, "deslogeado")
+                        },
+                        error: function (data) {
+                            callback("error", "Not created")
+                        }
+                    });
+                    window.location.href = "/index.html"
                 })
+
             }else{
                 $("#contentForSession").append(contentWithoutLogin)
             }

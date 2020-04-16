@@ -69,7 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
           .defaultSuccessUrl("/auctions.html", true)
           .and()
           .logout()
-          .logoutUrl("/perform_logout")
+          .logoutUrl("/perform-logout")
           .deleteCookies("JSESSIONID");
     }
 
