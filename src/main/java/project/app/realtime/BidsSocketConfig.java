@@ -34,8 +34,8 @@ public class BidsSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/r-auctions");
-        config.setApplicationDestinationPrefixes("/r-auctions");        
+        config.enableSimpleBroker("/app");
+        config.setApplicationDestinationPrefixes("/app");        
     }
 
     @Override

@@ -1,4 +1,4 @@
-/*package project.app.realtime;
+package project.app.realtime;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class BidRealtimeHandler {
     
 	@MessageMapping("/auctions/{idAuction}")    
 	public void handleBidEvent(Bid bid, @DestinationVariable int idAuction) throws Exception {
-		System.out.println("Nuevo punto recibido en el servidor!: "+idAuction+" "+bid.toString());
-		msgt.convertAndSend("/r-auctions/auctions/"+idAuction, bid);
+		System.out.println("Nuevo bid recibido en el servidor!: "+idAuction+" "+bid.toString());
+		msgt.convertAndSend("/topic/auctions/"+idAuction, bid);
 	}
-}*/
+}
