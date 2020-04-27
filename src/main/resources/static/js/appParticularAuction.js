@@ -64,8 +64,60 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
                 renderBids()
             }
         });
+        connect();
+        subscribe(localStorage.getItem('auctionId'));
+    }
+
+
+    var stompClient = null;
+    var topic = "";
+
+    var connect = function () {
+        console.info('Connecting to WS...');
+        var socket = new SockJS('/bid-flight');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            console.log('Connected: ' + frame);
+
+        });
+    };
+
+    var subscribe = (id) => {
+        //console.log(stompClient)
+        topic = '/r-auctions/auctions/' + id
+        console.log("pulse aca y me subscribi a" + topic)
+        stompClient.subscribe(topic, function (eventbody) {
+            let bid = JSON.parse(eventbody.body);
+            alert(JSON.stringify(bid));
+        });
+
     }
     return {
-        init: () => renderAll()
-    }
+        init: () => renderAll(),
+
+        publishBid: function (amount) {
+            let bid = {
+                bidder : {
+                    username : $("#user").val()
+                },
+                amount : amount,
+                auction : {
+                    id : localStorage.getItem('auctionId')
+                }
+            };
+            console.info("publishing bid "+bid);
+            addPointToCanvas(pt);
+            console.info('Enviando bid a ' + topic + '...');
+            stompClient.send(topic, {}, JSON.stringify(bid));
+        },
+
+        disconnect: function () {
+            if (stompClient !== null) {
+                stompClient.disconnect();
+            }
+            setConnected(false);
+            console.log("Disconnected");
+        }
+    };
+    
 })(apiclientFlights, apiclientAuction);

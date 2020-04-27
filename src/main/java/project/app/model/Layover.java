@@ -36,5 +36,10 @@ public class Layover {
         return "Layover [airport=" + airport + "]";
     }
 
+    public Layover(int id, String airport) {
+        this.id = id;
+        this.airport = airport;
+    }
+
     
 }
