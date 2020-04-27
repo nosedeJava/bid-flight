@@ -15,7 +15,7 @@ CREATE TABLE Airline (
 CREATE TABLE Auction (
     id serial  NOT NULL,
     ticket int  NOT NULL,
-    dueDate date  NOT NULL,
+    dueDate TIMESTAMP  NOT NULL,
     CONSTRAINT Auction_pk PRIMARY KEY (id)
 );
 
