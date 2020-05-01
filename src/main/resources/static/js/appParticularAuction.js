@@ -33,7 +33,7 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
             let winner = bids[0]
             let stringWinner = "<div class='" + classWinner + "' style='border-width:5px;'><div class='card-body text-center p-0'><h2 class='card-text'><b>" + winner.bidder.username + " has bidding " + winner.amount + " dollars for this flight!</b></h2></div></div>"
             $("#listBids").append(stringWinner)
-            bids.slice(1, 5).forEach(bid => {
+            bids.slice(1, 6).forEach(bid => {
                 let string = "<div class='" + classNoWinner + "'><div class='card-body text-center p-0'><h4 class='card-text'>" + bid.bidder.username + " has bidding " + bid.amount + " dollars for this flight</h4></div></div>"
                 $("#listBids").append(string)
             });
@@ -99,6 +99,7 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
         console.log("pulse aca y me subscribi a" + topic)
         stompClient.subscribe(topic, function (eventbody) {
             let bid = JSON.parse(eventbody.body);
+            
             updateBids(bid)
         });
     }
