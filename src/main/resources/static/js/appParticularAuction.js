@@ -1,6 +1,8 @@
 var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
     let bids
     const months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
+    const classWinner = "card text-success border-success mb-3 col-lg-9 mx-auto"
+    const classNoWinner = "card text-warning border-warning mb-3 col-lg-8 mx-auto"
     const renderInfo = (flight, auction) => {
         let source = flight.source
         let destiny = flight.destiny
@@ -28,8 +30,6 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
     }
     const renderBids = () => {
         if (bids.length > 0) {
-            const classWinner = "card text-success border-success mb-3 col-lg-9 mx-auto"
-            const classNoWinner = "card text-warning border-warning mb-3 col-lg-8 mx-auto"
             let winner = bids[0]
             let stringWinner = "<div class='" + classWinner + "' style='border-width:5px;'><div class='card-body text-center p-0'><h2 class='card-text'><b>" + winner.bidder.username + " has bidding " + winner.amount + " dollars for this flight!</b></h2></div></div>"
             $("#listBids").append(stringWinner)
@@ -83,16 +83,19 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
         });
         
     };
-
+    let updateBids = (bid)=>{
+        $("#listBids").children().attr('class',classNoWinner)
+        let stringWinner = "<div class='" + classWinner + "' style='border-width:5px;'><div class='card-body text-center p-0'><h2 class='card-text'><b>" + bid.bidder.username + " has bidding " + bid.amount + " dollars for this flight!</b></h2></div></div>"
+        $("#listBids").prepend(stringWinner)
+    }
     var subscribe = (id) => {
         //console.log(stompClient)
         topic = '/app/auctions/' + id
         console.log("pulse aca y me subscribi a" + topic)
         stompClient.subscribe(topic, function (eventbody) {
             let bid = JSON.parse(eventbody.body);
-            
+            updateBids(bid)
         });
-
     }
     return {
         init: () => renderAll(),
