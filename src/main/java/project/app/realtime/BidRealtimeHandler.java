@@ -28,7 +28,7 @@ public class BidRealtimeHandler {
 	@MessageMapping("/auctions/{idAuction}")
 	public void handleBidEvent(Bid bid, @DestinationVariable int idAuction) {
 		System.out.println("Bid recibida en el servidor: " + bid.toString());
-		try {
+		/*try {
 			if (!bidderServices.validateBid(bid)) {
 				msgt.convertAndSend("/app/auctions/" + idAuction, new InconsistentBid("Bid inconsistente - Saldo insuficiente"));
 			} else {
@@ -44,6 +44,6 @@ public class BidRealtimeHandler {
 		} catch (InconsistentBid e) {
 			msgt.convertAndSend("/app/auctions/" + idAuction, e);
 			e.printStackTrace();
-		}
+		}*/
 	}
 }
