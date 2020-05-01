@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.app.exception.AuctionNotFound;
+import project.app.exception.InconsistentBid;
 import project.app.model.Auction;
 import project.app.model.Bid;
 import project.app.model.Bidder;
@@ -95,6 +96,7 @@ public class AuctionServices {
      * @return
      */
     private List<Auction> order(String param, List<Auction> auctions) {
+        // Orden por precio Menor - Mayor
         if (param.contains("Price")) {
             Collections.sort(auctions, new Comparator<Auction>() {
                 @Override
@@ -103,6 +105,7 @@ public class AuctionServices {
                 }
             });
         }
+        // Orden por duración Menor - Mayor
         else if(param.contains("Duration")){
             Collections.sort(auctions, new Comparator<Auction>() {
                 @Override
@@ -111,10 +114,14 @@ public class AuctionServices {
                 }
             });
         }
+        // Orden por take off date Menor (Más cercana en el tiempo) - Mayor (Más lejana en el tiempo)
         else if(param.contains("Take off date")){
-            /**
-            * TO DO
-            */
+            Collections.sort(auctions, new Comparator<Auction>(){
+                @Override
+                public int compare(Auction o1, Auction o2) {
+                    return o1.getDueDate().compareTo(o2.getDueDate());
+                }
+            });
         }
         return auctions;
     }
@@ -180,12 +187,23 @@ public class AuctionServices {
     }
 
     /**
-     * TO DO - Remove
+     * Actualiza una auction al recibir una nueva oferta.
+     * @param bid
+     * @throws AuctionNotFound
+     * @throws InconsistentBid
      */
-
-    /**
-     * TO DO - Put
-     */
+    public void updateAuction(Bid bid) throws AuctionNotFound, InconsistentBid {
+        Auction auction = getAuctionById(bid.getAuction().getId());
+        System.out.println("------------------- Entré a actualizar la auction ---------------------------------");
+        System.out.println("Price: "+auction.getTicket().getPrice()+" - Amount: "+bid.getAmount());
+        if(auction.getTicket().getPrice()>bid.getAmount()){
+            throw new InconsistentBid("Bid inconsistente - Precio");
+        }else{
+            auction.getTicket().setPrice(bid.getAmount());
+            auction.getBids().add(bid);
+            auctionRepository.save(auction);
+        }
+    }
 
     /**
      * Metodo interno para el calculo de las subastas, originalmente quemado a 10h
@@ -203,16 +221,4 @@ public class AuctionServices {
         dueDate = cl.getTime();
         return dueDate;
     }
-
-    /**
-     * 
-     * @param auctions
-     * @return
-     * 
-     *         private Set<Auction> filterByDate(Set<Auction> auctions){ Date today
-     *         = new Date(System.currentTimeMillis()); for (Auction auction :
-     *         auctions) { Date auctionDate = auction.getDueDate();
-     *         if(today.compareTo(auctionDate)>=0){ auctions.remove(auction); } }
-     *         return auctions; }
-     */
 }

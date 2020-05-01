@@ -83,5 +83,21 @@ public class BidderServices {
         }
         return auctions;
     }
+
+
+    /**
+     * Valida si el usuario cuenta con fondos suficientes para realizar una oferta.
+     * @param bid
+     * @return
+     * @throws BidderNotFound
+     */
+    public boolean validateBid(Bid bid) throws BidderNotFound {
+        Bidder bidder = getBidder(bid.getBidder().getUsername());
+        if(bidder.getBalance()<bid.getAmount()){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
 }
