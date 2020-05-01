@@ -18,13 +18,6 @@ public class BidRealtimeHandler {
 
 	@Autowired
 	SimpMessagingTemplate msgt;
-<<<<<<< HEAD
-    
-	@MessageMapping("/auctions/{idAuction}")    
-	public void handleBidEvent(Bid bid, @DestinationVariable int idAuction) throws Exception {
-		System.out.println("Nuevo bid recibido en el servidor!: "+idAuction+" "+bid.toString());
-		msgt.convertAndSend("/app/auctions/"+idAuction, bid);
-=======
 
 	@Autowired
 	AuctionServices auctionServices;
@@ -52,6 +45,5 @@ public class BidRealtimeHandler {
 			msgt.convertAndSend("/app/auctions/" + idAuction, e);
 			e.printStackTrace();
 		}*/
->>>>>>> 1e8db763f8e94e8d5f256a1e983897cc6aa4264a
 	}
 }
