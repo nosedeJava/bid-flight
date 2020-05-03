@@ -16,7 +16,7 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
         let dateCute = take_off_date.split("-")
         take_off_date = dateCute[0] + " " + months[parseInt(dateCute[1], 10) - 1] + " " + dateCute[2]
         dateCute = auction.dueDate.split("-")
-        due_date = dateCute[0] + " " + months[parseInt(dateCute[1], 10) - 1] + " " + dateCute[2].split("T")[0]+" "+dateCute[2].split("T")[1].split(":")[0]+":"+dateCute[2].split("T")[1].split(":")[1]
+        due_date = dateCute[0] + " " + months[parseInt(dateCute[1], 10) - 1] + " " + dateCute[2].split("T")[0] + " " + dateCute[2].split("T")[1].split(":")[0] + ":" + dateCute[2].split("T")[1].split(":")[1]
         $('#source').text(source)
         $('#destiny').text(destiny)
         $('#layover').text(layover)
@@ -77,45 +77,55 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
         stompClient.connect({}, function (frame) {
             console.log('Connected: ' + frame);
             subscribe(localStorage.getItem('auctionId'));
-        }, function(){
+        }, function () {
             console.log(error);
         });
-        
+
     };
-    let updateBids = (bid)=>{
-        $("#listBids").children().attr('class',classNoWinner)
+    let updateBids = (bid) => {
+        $("#listBids").children().attr('class', classNoWinner)
         let stringWinner = "<div class='" + classWinner + "' style='border-width:5px;'><div class='card-body text-center p-0'><h2 class='card-text'><b>" + bid.bidder.username + " has bidding " + bid.amount + " dollars for this flight!</b></h2></div></div>"
         $("#listBids").prepend(stringWinner)
-        let i=0
+        let i = 0
         $('#listBids').children('div').each(function () {
-            if(i>5) $(this).remove()
+            if (i > 5) $(this).remove()
             i++
         });
     }
     var subscribe = (id) => {
         //console.log(stompClient)
-        stompClient.subscribe("/auctions/bid/"+id, function (eventbody) {
+        stompClient.subscribe("/auctions/bid/" + id, function (eventbody) {
             let bid = JSON.parse(eventbody.body);
-            
-            updateBids(bid)
+            if (!(bid.bidder === undefined || bid.amount === undefined)) {
+                updateBids(bid)
+            }
         });
     }
     return {
         init: () => renderAll(),
 
         publishBid: function () {
-            amount = $("#amount").val();
+            let amount = $("#amount").val();
+            let userbalance = parseInt($("#userbalance").text(), 10)
+            let price = parseInt($("#price").text(), 10)
             let bid = {
-                bidder : {
-                    username : $("#user").text()
+                bidder: {
+                    username: $("#user").text()
                 },
-                amount : amount,
-                auction : {
-                    id : localStorage.getItem('auctionId')
+                amount: amount,
+                auction: {
+                    id: localStorage.getItem('auctionId')
                 }
             };
-            console.info("publishing bid "+JSON.stringify(bid));
-            stompClient.send("/app/auctions/"+localStorage.getItem('auctionId'), {}, JSON.stringify(bid));
+            if (userbalance < amount) {
+                alert("You don't have enough cash")
+            }
+            else if (price < amount) {
+                alert("You gotta increase that number buddy")
+            } else {
+                console.info("publishing bid " + JSON.stringify(bid));
+                stompClient.send("/app/auctions/" + localStorage.getItem('auctionId'), {}, JSON.stringify(bid));
+            }
         },
 
         disconnect: function () {
@@ -126,5 +136,5 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
             console.log("Disconnected");
         }
     };
-    
+
 })(apiclientFlights, apiclientAuction);
