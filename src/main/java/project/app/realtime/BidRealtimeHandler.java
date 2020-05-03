@@ -6,6 +6,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 
 import project.app.exception.AuctionNotFound;
 import project.app.exception.BidderNotFound;
@@ -29,23 +30,23 @@ public class BidRealtimeHandler {
 	@MessageMapping("/auctions/{idAuction}")
 	public void handleBidEvent(Bid bid, @DestinationVariable int idAuction) {
 		System.out.println("Bid recibida en el servidor: " + bid.toString());
-		msgt.convertAndSend("/auctions/bid/"+idAuction, bid);
-		/*try {
+		try {
 			if (!bidderServices.validateBid(bid)) {
-				msgt.convertAndSend("/app/auctions/" + idAuction, new InconsistentBid("Bid inconsistente - Saldo insuficiente"));
+				System.out.println("Aiiuda alo crack digo... polisia");
+				msgt.convertAndSend("/auctions/bid/" + idAuction, "Bid inconsistente - Saldo insuficiente");
 			} else {
 				auctionServices.updateAuction(bid);
-				msgt.convertAndSend("/app/auctions/"+idAuction, bid);
+				msgt.convertAndSend("/auctions/bid/"+idAuction, bid);
 			}
 		} catch (BidderNotFound e1) {
-			msgt.convertAndSend("/app/auctions/" + idAuction, e1);
+			msgt.convertAndSend("/auctions/bid/" + idAuction, e1.getMessage());
 			e1.printStackTrace();
 		} catch (AuctionNotFound e) {
-			msgt.convertAndSend("/app/auctions/" + idAuction, e);
+			msgt.convertAndSend("/auctions/bid/" + idAuction, e.getMessage());
 			e.printStackTrace();
 		} catch (InconsistentBid e) {
-			msgt.convertAndSend("/app/auctions/" + idAuction, e);
+			msgt.convertAndSend("/auctions/bid/" + idAuction, e.getMessage());
 			e.printStackTrace();
-		}*/
+		}
 	}
 }

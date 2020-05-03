@@ -93,7 +93,7 @@ public class BidderServices {
      */
     public boolean validateBid(Bid bid) throws BidderNotFound {
         Bidder bidder = getBidder(bid.getBidder().getUsername());
-        if(bidder.getBalance()<bid.getAmount()){
+        if(bidder.getBalance()>=bid.getAmount()){
             return true;
         }else{
             return false;
