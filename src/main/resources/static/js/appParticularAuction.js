@@ -69,7 +69,6 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
 
 
     var stompClient = null;
-    var topic = "";
 
     var connect = function () {
         console.info('Connecting to WS...');
@@ -95,9 +94,7 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
     }
     var subscribe = (id) => {
         //console.log(stompClient)
-        topic = '/app/auctions/' + id
-        console.log("pulse aca y me subscribi a" + topic)
-        stompClient.subscribe(topic, function (eventbody) {
+        stompClient.subscribe("/auctions/bid/"+id, function (eventbody) {
             let bid = JSON.parse(eventbody.body);
             
             updateBids(bid)
@@ -118,8 +115,7 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
                 }
             };
             console.info("publishing bid "+JSON.stringify(bid));
-            console.info('Enviando bid a ' + topic + '...');
-            stompClient.send(topic, {}, JSON.stringify(bid));
+            stompClient.send("/app/auctions/"+localStorage.getItem('auctionId'), {}, JSON.stringify(bid));
         },
 
         disconnect: function () {
