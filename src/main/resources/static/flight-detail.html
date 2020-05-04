@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Bid flight</title>
+    
+</head>
+
+<body style="margin-bottom: 30px; ">
+    <nav class="navbar navbar-default  navbar-expand navbar-dark fixed-top"
+        style="background: linear-gradient(to left, #396afc, #2948ff);">
+        <a href="index.html" class="navbar-brand">Bid flight</a>
+        <ul class="navbar-nav ">
+            <li class="navbar-item">
+                <a href="about-us.html" class="nav-link">About us</a>
+            </li>
+            <li class="navbar-item">
+                <a href="airlines.html" class="nav-link">Airlines</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto" id="contentForSession">
+
+        </ul>
+    </nav>
+    <div class="container-fluid" style="margin-top:5rem;">
+        <div class="row mb-3">
+            <div class="col-lg-8 mx-auto text-white">
+                <div class="card  text-white " style="background-color: #2948ff;">
+                    <div class="card-body text-center">
+                        <h3 class="card-title ">Welcome <span class="username" id="user"></span>!</h3>
+                        <p class="card-text">If you want this flight, you'd better raise its price before someone else
+                            do</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-lg-8 mx-auto">
+                <div class="card h-100 border-primary">
+                    <div class="card-body text-primary">
+                        <div class='row'>
+                            <div class='col-4'>
+                                <span id="source"></span>
+                                <i class='material-icons'>arrow_forward</i>
+                                <span id="destiny"></span> <br>
+                                <span id="layover"></span>
+                                <i class='material-icons' id="icon-layover" title='Direct'>airplanemode_active</i>
+                                <br>
+                                <i class='material-icons' title='Take off date'>schedule</i>
+                                <span id="take-off-date"></span><br>
+                            </div>
+                            <div class='col-4' style="border-right: 3px solid rgb(60, 69, 150);">
+                                Flight type: <span id="flight-type"></span>
+                                <i class='material-icons'>people_alt</i><br>
+                                Bag type: <span id="bag-type"></span>
+                                <i class='material-icons'>work_outline</i><br>
+                                Duration: <span id="duration"></span> hours<i class='material-icons'>watch_later</i><br>
+                            </div>
+                            <div class="col-4">
+                                <h1 class="card-title">$<span id="price"></span> USD</h1>
+                                <b>Airline: </b><span id="airline"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted text-center ">
+
+                        <p> This auction is gonna end at <span id="due-date"></span> <br> <a href="auctions.html"
+                                class="stretched-link">You can go back</a> and see more auctions</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="js/session.js"></script>
+</body>
+
+</html>
