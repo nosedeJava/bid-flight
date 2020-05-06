@@ -62,7 +62,7 @@ public class BidderController {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             BidderDetailsImpl bidder = (BidderDetailsImpl) auth.getPrincipal();
             bidder.setBalance(bidder.getBalance()+amount);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(bidder.getBalance(), HttpStatus.OK);
 
         }catch(Exception ex){
             Logger.getLogger(AuctionController.class.getName()).log(Level.SEVERE, null, ex);

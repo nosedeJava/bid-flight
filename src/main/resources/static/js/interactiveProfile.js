@@ -1,24 +1,22 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
 
     $.ajax({
         url: "/accounts/sessionID",
         type: "GET",
         contentType: "application/json",
-        success: function (data) {
+        success: function(data) {
             $("#names").text(data.names)
             $("#lastnames").text(data.lastnames)
             $("#username").text(data.username)
             $("#document").text(data.document)
             $("#balanceText").text(data.balance)
         },
-        error: function (data) {
+        error: function(data) {
             console.log(data)
         }
     });
-    $("#btnBalance").click(function () {
-        alert("HAHA")
-        alert($("#amount").val())
+    $("#btnBalance").click(function() {
         putBalance($("#amount").val())
     })
     let putBalance = (balance) => {
