@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     $("#btnSignUp").click(function(){
         let bidder={
-            mail:$("#names").val(),
+            mail:$("#email").val(),
             password:$("#pass").val(),
             names:$("#names").val(),
             lastnames:$("#lastnames").val(),
