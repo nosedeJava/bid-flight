@@ -56,10 +56,13 @@ public class BidderController {
     }
 
     @RequestMapping(value = "/{username}", method = RequestMethod.PUT)
-    public ResponseEntity<?> putAccount(@RequestBody Bidder bidder,@PathVariable("username") String username){
+    public ResponseEntity<?> putAccount(@RequestBody float amount, @PathVariable("username") String username){
         try{
-            bidderServices.updateBidder(bidder,username);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            bidderServices.updateBalance(amount,username);
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            BidderDetailsImpl bidder = (BidderDetailsImpl) auth.getPrincipal();
+            bidder.setBalance(bidder.getBalance()+amount);
+            return new ResponseEntity<>(HttpStatus.OK);
 
         }catch(Exception ex){
             Logger.getLogger(AuctionController.class.getName()).log(Level.SEVERE, null, ex);

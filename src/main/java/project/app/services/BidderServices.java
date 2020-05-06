@@ -58,10 +58,26 @@ public class BidderServices {
     }
 
     /**
-     * cambia la informacion del usuario
+     * 
+     * @param bidder
+     * @param name
      */
     public void updateBidder(Bidder bidder,String name){
+        // TO DO
+    }
 
+    /**
+     * Metodo que permite el aumento y disminución de saldo dentro de un usuario.
+     * @param amount    Cantidad que se desea agregar/quitar del saldo.
+     * @param username  Identificador del usuario al que se desea añadirle el saldo.
+     * @throws BidderNotFound   En caso de no encontrar al bidder que se intenta modificar.
+     */
+    public void updateBalance(float amount, String username) throws BidderNotFound {
+        Bidder bidder = getBidder(username);
+        float previousBalance = bidder.getBalance();
+        float newBalance = previousBalance+amount;
+        bidder.setBalance(newBalance);
+        bidderRepository.save(bidder);
     }
     
     /**

@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,8 +42,9 @@ public class AuctionServices {
     @Autowired
     private BidRepository bidRepository;
 
-    @Autowired 
+    @Autowired
     private TicketRepository ticketRepository;
+
     /**
      * Operación realizada para obtener todas las subastas.
      * 
@@ -91,7 +93,8 @@ public class AuctionServices {
         // Ahora ordenamos
         if (filters.containsKey("orderby")) {
             list = order(filters.get("orderby"), newAuctions);
-        }else list = newAuctions;
+        } else
+            list = newAuctions;
         return list;
     }
 
@@ -112,17 +115,19 @@ public class AuctionServices {
             });
         }
         // Orden por duración Menor - Mayor
-        else if(param.contains("Duration")){
+        else if (param.contains("Duration")) {
             Collections.sort(auctions, new Comparator<Auction>() {
                 @Override
                 public int compare(Auction o1, Auction o2) {
-                    return Integer.compare(o1.getTicket().getFlight().getDuration(), o2.getTicket().getFlight().getDuration());
+                    return Integer.compare(o1.getTicket().getFlight().getDuration(),
+                            o2.getTicket().getFlight().getDuration());
                 }
             });
         }
-        // Orden por take off date Menor (Más cercana en el tiempo) - Mayor (Más lejana en el tiempo)
-        else if(param.contains("Take off date")){
-            Collections.sort(auctions, new Comparator<Auction>(){
+        // Orden por take off date Menor (Más cercana en el tiempo) - Mayor (Más lejana
+        // en el tiempo)
+        else if (param.contains("Take off date")) {
+            Collections.sort(auctions, new Comparator<Auction>() {
                 @Override
                 public int compare(Auction o1, Auction o2) {
                     return o1.getDueDate().compareTo(o2.getDueDate());
@@ -159,12 +164,8 @@ public class AuctionServices {
      */
     public Auction getAuctionById(int id) throws AuctionNotFound {
         Auction auction = null;
-        try {
-            auction = auctionRepository.findById(id);
-            if (auction == null) {
-                throw new AuctionNotFound("Subasta no encontrada");
-            }
-        } catch (Exception e) {
+        auction = auctionRepository.findById(id);
+        if (auction == null) {
             throw new AuctionNotFound("Subasta no encontrada");
         }
         auction.getTicket().getFlight().setTickets(null);
@@ -179,6 +180,16 @@ public class AuctionServices {
             bidder.setPassword(null);
             bid.setAuction(null);
         }
+
+        // Control para dar las bids organizadas
+        Set<Bid> bids = new TreeSet<>(new Comparator<Bid>() {
+			@Override
+			public int compare(Bid b1, Bid b2) {
+				return -Float.compare(b1.getAmount(), b2.getAmount());
+			}
+        });
+        bids.addAll(auction.getBids());
+        auction.setBids(bids);
         return auction;
     }
 
@@ -194,6 +205,7 @@ public class AuctionServices {
 
     /**
      * Actualiza una auction al recibir una nueva oferta.
+     * 
      * @param bid
      * @throws AuctionNotFound
      * @throws InconsistentBid
@@ -201,12 +213,12 @@ public class AuctionServices {
     public void updateAuction(Bid bid) throws AuctionNotFound, InconsistentBid {
         Auction auction = getAuctionById(bid.getAuction().getId());
         System.out.println("------------------- Entré a actualizar la auction ---------------------------------");
-        System.out.println("Price: "+auction.getTicket().getPrice()+" - Amount: "+bid.getAmount());
-        if(auction.getTicket().getPrice()>bid.getAmount()){
+        System.out.println("Price: " + auction.getTicket().getPrice() + " - Amount: " + bid.getAmount());
+        if (auction.getTicket().getPrice() > bid.getAmount()) {
             throw new InconsistentBid("Bid inconsistente - Precio");
-        }else{
+        } else {
             try {
-                ticketRepository.updatePrice(bid.getAmount(), auction.getTicket().getId());     
+                ticketRepository.updatePrice(bid.getAmount(), auction.getTicket().getId());
             } catch (Exception e) {
                 System.out.println("Se feliz");
             }
