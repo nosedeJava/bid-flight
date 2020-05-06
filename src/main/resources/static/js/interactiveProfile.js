@@ -27,6 +27,8 @@ $(document).ready(function () {
                 alert("There was an error increasing your balance")
             } else {
                 $("#balanceText").text(res)
+
+                $("#userbalance").text(data.balance)
             }
         })
     }
