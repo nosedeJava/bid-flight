@@ -1,4 +1,4 @@
-var apiclientLogin = (function () {
+var apiclientLogin = (function() {
     let createNewAirline = (airline, callback) => {
         console.log(airline)
         $.ajax({
@@ -6,10 +6,10 @@ var apiclientLogin = (function () {
             type: "POST",
             data: JSON.stringify(airline),
             contentType: "application/json",
-            success: function (data) {
+            success: function(data) {
                 callback(null, "Created")
             },
-            error: function (data) {
+            error: function(data) {
                 callback("error", "Not created")
             }
         });
@@ -21,10 +21,10 @@ var apiclientLogin = (function () {
             type: "POST",
             data: JSON.stringify(bidder),
             contentType: "application/json",
-            success: function (data) {
+            success: function(data) {
                 callback(null, "created")
             },
-            error: function (data) {
+            error: function(data) {
                 callback("error", "not created")
             }
         });
@@ -32,20 +32,20 @@ var apiclientLogin = (function () {
     let incrementBalance = (username, balance, callback) => {
         console.log(username + " " + balance)
         $.ajax({
-            url: "/accounts/"+username,
+            url: "/accounts/" + username,
             type: "PUT",
-            data: JSON.stringify({balance:balance}),
+            data: JSON.stringify(balance),
             contentType: "application/json",
-            success: function (data) {
-                callback(null, "modified")
+            success: function(data) {
+                callback(null, data)
             },
-            error: function (data) {
+            error: function(data) {
                 callback("error", "no modified")
             }
         });
     }
     return {
-        createAirline: (airline, callback) => createNewAirline( airline, callback),
+        createAirline: (airline, callback) => createNewAirline(airline, callback),
         createBidder: (bidder, callback) => createNewBidder(bidder, callback),
         putMoreBalance: (username, balance, callback) => incrementBalance(username, balance, callback)
     }
