@@ -214,7 +214,7 @@ public class AuctionServices {
         Auction auction = getAuctionById(bid.getAuction().getId());
         System.out.println("------------------- Entré a actualizar la auction ---------------------------------");
         System.out.println("Price: " + auction.getTicket().getPrice() + " - Amount: " + bid.getAmount());
-        if (auction.getTicket().getPrice() > bid.getAmount()) {
+        if (auction.getTicket().getPrice() >= bid.getAmount()) {
             throw new InconsistentBid("Bid inconsistente - Precio");
         } else {
             try {

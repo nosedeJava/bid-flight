@@ -60,14 +60,6 @@ CREATE TABLE Layover (
     CONSTRAINT Layover_pk PRIMARY KEY (id)
 );
 
--- Table: Payment
-CREATE TABLE Payment (
-    id serial  NOT NULL,
-    bidder varchar  NOT NULL,
-    type varchar  NOT NULL,
-    info varchar  NOT NULL,
-    CONSTRAINT Payment_pk PRIMARY KEY (id)
-);
 
 -- Table: Ticket
 CREATE TABLE Ticket (
@@ -120,13 +112,6 @@ ALTER TABLE Layover ADD CONSTRAINT Layover_Flight
     INITIALLY IMMEDIATE
 ;
 
--- Reference: Payment_User (table: Payment)
-ALTER TABLE Payment ADD CONSTRAINT Payment_User
-    FOREIGN KEY (bidder)
-    REFERENCES Bidder (mail)  
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
 
 -- Reference: Ticket_Flight (table: Ticket)
 ALTER TABLE Ticket ADD CONSTRAINT Ticket_Flight
@@ -137,4 +122,3 @@ ALTER TABLE Ticket ADD CONSTRAINT Ticket_Flight
 ;
 
 -- End of file.
-

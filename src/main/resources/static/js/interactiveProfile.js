@@ -26,7 +26,7 @@ $(document).ready(function() {
             } else {
                 $("#balanceText").text(res)
 
-                $("#userbalance").text(data.balance)
+                $("#userbalance").text(res)
             }
         })
     }

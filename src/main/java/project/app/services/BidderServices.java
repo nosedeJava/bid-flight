@@ -73,11 +73,17 @@ public class BidderServices {
      * @throws BidderNotFound   En caso de no encontrar al bidder que se intenta modificar.
      */
     public void updateBalance(float amount, String username) throws BidderNotFound {
+        
         Bidder bidder = getBidder(username);
+        System.out.println("######"+bidder.toString());
         float previousBalance = bidder.getBalance();
         float newBalance = previousBalance+amount;
-        bidder.setBalance(newBalance);
-        bidderRepository.save(bidder);
+        try {
+            bidderRepository.updateBalance(newBalance, username);    
+        } catch (Exception e) {
+            System.out.println("Se feliz x2");
+        }
+        
     }
     
     /**

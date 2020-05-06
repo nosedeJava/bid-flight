@@ -58,6 +58,7 @@ public class BidderController {
     @RequestMapping(value = "/{username}", method = RequestMethod.PUT)
     public ResponseEntity<?> putAccount(@RequestBody float amount, @PathVariable("username") String username){
         try{
+            System.out.println(amount+" "+username);
             bidderServices.updateBalance(amount,username);
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             BidderDetailsImpl bidder = (BidderDetailsImpl) auth.getPrincipal();

@@ -95,9 +95,13 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
     var subscribe = (id) => {
         //console.log(stompClient)
         stompClient.subscribe("/auctions/bid/" + id, function (eventbody) {
-            let bid = JSON.parse(eventbody.body);
-            if (!(bid.bidder === undefined || bid.amount === undefined)) {
-                updateBids(bid)
+            try {
+                let bid = JSON.parse(eventbody.body);
+                if (!(bid.bidder === undefined || bid.amount === undefined)) {
+                    updateBids(bid)
+                }
+            } catch (error) {
+
             }
         });
     }
