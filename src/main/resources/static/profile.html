@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>NavBar</title>
+    <title>Bid flight</title>
 </head>
 
 <body>
@@ -30,14 +30,29 @@
 
         </ul>
     </nav>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <p align="center"> Pagina por hacer</p>
+    <div class="container col-lg-8 mx-auto" style="margin-top: 11rem;">
+        <div class="card" style="background:#FFF;">
+            <div class="row">
+                <div class="col-4">
+                    <img class="card-img rounded" src="img/user-image.png" alt="Card image cap"
+                        style="width:15rem;height:15rem;">
+                </div>
+                <div class="col-8">
+                    <div class="card-body">
+                        <div class="row">
+                            <p>Names: <span id="names"></span></p> <br>
+                            <p>Lastnames: <span id="lastnames"></span></p>
+                            <p>Username: <span id="username"></span></p>
+                            <p>Document: C.C <span id="document"></span></p>
+                            <p>Balance: <span id="balanceText"></span></p>
+                            <input class="form-control" type="text" placeholder="Amount" id="amount">
+                            <button type="button" class="btn btn-dark btn-block" id="btnBalance">Increase</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.js"
@@ -48,6 +63,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    <script src="js/apiclientLogin.js"></script>
+    <script src="js/interactiveProfile.js"></script>
     <script src="js/session.js"></script>
 </body>
 
