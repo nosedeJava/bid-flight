@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -21,7 +22,9 @@ import project.app.model.Bidder;
 import project.app.model.Flight;
 import project.app.model.Ticket;
 import project.app.persistence.AuctionRepository;
+import project.app.persistence.BidRepository;
 import project.app.persistence.FlightRepository;
+import project.app.persistence.TicketRepository;
 
 /**
  * AuctionServices
@@ -35,6 +38,11 @@ public class AuctionServices {
     @Autowired
     private FlightRepository flightRepository;
 
+    @Autowired
+    private BidRepository bidRepository;
+
+    @Autowired 
+    private TicketRepository ticketRepository;
     /**
      * Operación realizada para obtener todas las subastas.
      * 
@@ -47,9 +55,7 @@ public class AuctionServices {
         // string, debemos limpiar algunos datos.
         for (Auction auction : auctions) {
             auction.getTicket().getFlight().setTickets(null);
-            for (Bid bid : auction.getBids()) {
-                bid.setAuction(null);
-            }
+            auction.setBids(new HashSet<Bid>());
         }
         auctions = completeFiltering(auctions, filters);
         return auctions;
@@ -171,7 +177,7 @@ public class AuctionServices {
             bidder.setLastnames(null);
             bidder.setNames(null);
             bidder.setPassword(null);
-            bidder.setPayments(null);
+            bid.setAuction(null);
         }
         return auction;
     }
@@ -199,9 +205,12 @@ public class AuctionServices {
         if(auction.getTicket().getPrice()>bid.getAmount()){
             throw new InconsistentBid("Bid inconsistente - Precio");
         }else{
-            auction.getTicket().setPrice(bid.getAmount());
-            auction.getBids().add(bid);
-            auctionRepository.save(auction);
+            try {
+                ticketRepository.updatePrice(bid.getAmount(), auction.getTicket().getId());     
+            } catch (Exception e) {
+                System.out.println("Se feliz");
+            }
+            bidRepository.save(bid);
         }
     }
 

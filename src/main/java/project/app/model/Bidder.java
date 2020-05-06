@@ -26,9 +26,6 @@ public class Bidder {
     private float balance;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "bidder")
-    private Set<Payment> payments;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bidder")
     private Set<Bid> bids;
     private Role role = Role.BIDDER;
 
@@ -105,14 +102,6 @@ public class Bidder {
         return "Bidder [balance=" + balance + ", document=" + document + ", documentType=" + documenttype + ", lastNames="
                 + lastnames + ", mail=" + mail + ", names=" + names + ", password=" + password + ", username="
                 + username + "]";
-    }
-
-    public Set<Payment> getPayments() {
-        return payments;
-    }
-
-    public void setPayments(Set<Payment> payments) {
-        this.payments = payments;
     }
 
     public Set<Bid> getBids() {

@@ -120,7 +120,7 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
             if (userbalance < amount) {
                 alert("You don't have enough cash")
             }
-            else if (price < amount) {
+            else if (price > amount) {
                 alert("You gotta increase that number buddy")
             } else {
                 console.info("publishing bid " + JSON.stringify(bid));

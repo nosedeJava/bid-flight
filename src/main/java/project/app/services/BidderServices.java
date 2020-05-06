@@ -36,8 +36,7 @@ public class BidderServices {
         }else if(bidderDBUsername!=null){
             throw new BidderForbidden("Username ya se encuentra en uso");
         }
-        bidder.setPayments(null);
-        bidder.setBids(null);
+        bidder.setBids(new HashSet<Bid>());
         bidderRepository.save(bidder);        
     }
 
@@ -93,11 +92,9 @@ public class BidderServices {
      */
     public boolean validateBid(Bid bid) throws BidderNotFound {
         Bidder bidder = getBidder(bid.getBidder().getUsername());
-        if(bidder.getBalance()>=bid.getAmount()){
-            return true;
-        }else{
-            return false;
-        }
+        bidder.setBids(new HashSet<Bid>());
+        bid.setBidder(bidder);
+        return bidder.getBalance()>=bid.getAmount();
     }
     
 }

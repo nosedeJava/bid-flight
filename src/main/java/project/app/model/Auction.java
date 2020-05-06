@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,11 +26,11 @@ public class Auction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "serial")
     private int id;
-    @OneToOne( cascade = CascadeType.ALL)
+    @OneToOne( cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     @JoinColumn(name = "ticket")
     private Ticket ticket;
     private Date duedate;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     @JoinColumn(name = "auction")
     private Set<Bid> bids;
     // private List<Bidder> followers;
