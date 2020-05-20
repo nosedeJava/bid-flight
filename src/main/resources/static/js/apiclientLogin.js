@@ -1,14 +1,14 @@
-var apiclientLogin = (function() {
+var apiclientLogin = (function () {
     let createNewAirline = (airline, callback) => {
         $.ajax({
             url: "/airlines",
             type: "POST",
             data: JSON.stringify(airline),
             contentType: "application/json",
-            success: function(data) {
+            success: function (data) {
                 callback(null, "Created");
             },
-            error: function(data) {
+            error: function (data) {
                 callback("error", "Not created");
             }
         });
@@ -19,10 +19,10 @@ var apiclientLogin = (function() {
             type: "POST",
             data: JSON.stringify(bidder),
             contentType: "application/json",
-            success: function(data) {
+            success: function (data) {
                 callback(null, "created");
             },
-            error: function(data) {
+            error: function (data) {
                 callback("error", "not created");
             }
         });
@@ -33,10 +33,10 @@ var apiclientLogin = (function() {
             type: "PUT",
             data: JSON.stringify(balance),
             contentType: "application/json",
-            success: function(data) {
+            success: function (data) {
                 callback(null, data);
             },
-            error: function(data) {
+            error: function (data) {
                 callback("error", "no modified");
             }
         });

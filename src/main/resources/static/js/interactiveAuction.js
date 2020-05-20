@@ -1,6 +1,6 @@
 $(document).ready(function () {
     appAuction.showAuctions();
-    $("#auctionsButton").on("click",function(){
+    $("#auctionsButton").on("click", function () {
         $("#searching").html("");
         $("#list-flights").html("");
         $("#activeAuctionsButton").removeClass("active");
@@ -8,7 +8,7 @@ $(document).ready(function () {
         appAuction.showAuctions();
         return false;
     })
-    $("#activeAuctionsButton").on("click",function(){
+    $("#activeAuctionsButton").on("click", function () {
         $("#searching").html("");
         $("#list-flights").html("");
         $("#auctionsButton").removeClass("active");

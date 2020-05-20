@@ -56,7 +56,7 @@ var appAuction = (function (persistenceAuction, persistenceFlights) {
         })
     }
 
-    
+
     let getAndTransformActiveAuctions = (username) => {
         persistenceAuction.getActiveAuctions(username, (err, res) => {
             if (err) {

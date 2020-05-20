@@ -5,7 +5,7 @@ $(document).ready(function () {
     if (localStorage.getItem("airline")) {
         $("#contentForSession").append(contentWithLoginAirline);
         $("#airlineName").text(localStorage.getItem("airline"));
-        $("#btnLogout").on("click",function(){
+        $("#btnLogout").on("click", function () {
             localStorage.removeItem("airline");
             window.location.href = "/login-airline.html";
         })
@@ -25,10 +25,8 @@ $(document).ready(function () {
                             url: "/perform-logout",
                             type: "POST",
                             success: function (data) {
-                                console.log("logout")
                             },
                             error: function (data) {
-                                console.log("not logout")
                             }
                         });
                         window.location.href = "/index.html";
