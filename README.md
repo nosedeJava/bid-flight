@@ -91,6 +91,52 @@ Cuando hayamos ingresado como aerolínea, nos llevará a una sección donde en e
 
 ![](img/mainAirlinePage.PNG)
 
+## Atributos no funcionales
+
+#### Disponibilidad
+
+
+Nuestro ratios de disponibilidad por año: 6.278538812% 
+
+Tiempo inactivo por año: 8210h 
+
+Después de 30min de inactividad Heroku pone a dormir a la aplicación por lo que esto afecta a la disponibilidad también, sin embargo, al volver a hacer una solicitud al servicio este se reanudara hasta que vuelvan a haber 30 min de inactividad
+
+
+
+#### Usabilidad
+
+
+85.71% de efectividad, esto se midió con respecto a cuantas tareas daban feedback de su realización
+
+Heurísticas:
+
+•	Visibilidad del estado del sistema
+El sistema de real-time provee retroalimentación instantánea a los usuarios de sus interacciones y las de otros, mostrando información clara, que le permite saber el estado de la subasta
+
+•	La coincidencia entre el sistema y el mundo real
+19 de las 21 interacciones con el sistema usamos lenguaje común
+
+•	Control y libertad del usuario
+Solo las secciones de registro (2) no permiten al usuario la libertad para acceder de manera inmediata a otros recursos
+
+•	Consistencia y estándares
+Los usuarios no deberían tener que preguntarse si diferentes palabras, situaciones o acciones significan lo mismo. Siga las convenciones de la plataforma.
+
+•	Reconocer en lugar de recordar
+Para el usuario es fácil acceder a las subastas ya sea activas o no debido a nuestra barra de búsqueda, no es así para las aerolíneas, pues ellas solo ven todas sus subastas y no tienen manera de filtrar
+
+•	Flexibilidad y eficiencia de uso
+Solventamos la carga de usuario con llamados asíncronos pues aun si esta consultando los datos de sesión puede estar cargando las subastas al mismo tiempo
+
+•	Diseño estético y minimalista
+Nuestro diseño es simple y conciso solo le muestra al usuario lo que necesita saber
+
+•	Ayudar a los usuarios a reconocer, diagnosticar y recuperarse de los errores
+Aquí pecamos pues la retroalimentación de los errores la hacemos a partir de alertas entendemos que ese es un punto por mejorar
+
+•	Ayuda y documentación
+Aunque es mejor si el sistema puede utilizarse sin documentación, puede ser necesario proporcionar ayuda y documentación. Esa información debe ser fácil de buscar, centrarse en la tarea del usuario, enumerar los pasos concretos que deben realizarse y no ser demasiado amplia.
 
 ---
 #### Autores
