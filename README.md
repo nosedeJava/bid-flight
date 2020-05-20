@@ -33,6 +33,64 @@ A continuación, mostramos algunos de los modelos usados dentro de esta aplicaci
 #### Diagrama de despliegue
 ![](img/deploymentDiagram.PNG)
 
+---
+### Guía de uso
+
+### Guía de usuario
+Nuestra aplicación cuenta con una interfaz sencilla, que provee todos los elementos necesarios para su comprensión. Sin embargo, aquí mostramos lo principal para el uso de nuestra aplicación siendo un usuario.
+
+![](img/mainPage.PNG)
+
+##### Registro de usuario
+Lo primero para tener en cuenta será el registro de un nuevo usuario. 
+En nuestro menú en la parte superior a la derecha se ve la opción de "Sign up". Una vez le das clic te lleva al siguiente formulario, el cual permite la creación de cuentas.
+
+![](img/registerPage.PNG)
+
+##### Ingreso de usuario
+Nuevamente en la sección superior se puede ver la opción "Log in", la cual te llevará al siguiente formulario, donde tras ingresar los datos solicitados podrás acceder al sistema.
+
+![](img/loginPage.PNG)
+
+##### Página de subastas
+Una vez el usuario este dentro del sistema, lo que verá será la siguiente página.
+
+![](img/auctionsPage.PNG)
+
+En dicha vista puedes hacer varias cosas como añadir saldo, pujar, filtrar, entre otras. Para algunas de estas funciones mostramos el siguiente ejemplo:
+
+![](img/userGuideToBid.gif)
+
+### Guía para aerolíneas
+
+Una vez explicado el funcionamiento básico de la plataforma para los usuarios vale la pena explicar como funciona (de manera visual) para su contraparte, en este caso las aerolíneas.
+
+Lo primero entonces es ver la sección que da acceso a las aerolíneas, en la parte superior se ve la pestaña "Airlines", la cual te lleva a la siguiente vista.
+
+![](img/airline.PNG)
+
+##### Registro para aerolíneas
+
+Como se ve en la página principal de las aerolíneas, se permite el ingreso y el registro de las mismas. En este caso si vamos al apartado de registro veremos lo siguiente:
+
+![](img/registerAirlinePage.PNG)
+
+Una vez llenos estos datos, saldrá una confirmación brindando un poco de información extra. Dicha confirmación nos indica que para las aerolíneas el proceso de registro debe pasar por un intermediario que lo valide.
+
+![](img/registerAirlineConfirmation.PNG)
+
+##### Ingreso de aerolínea
+
+Una vez se cuente con la información de acceso para la aerolínea se permite el ingreso a través de la sección "Log in" de la página principal de Airlines. Sin embargo, para este prototipo no se cuenta realmente con una confirmación del registro, dicho esto, cuando intentes ingresar solo debes hacerlo con una aerolínea existente, sin tener en cuenta el campo de la contraseña. Esto se hizo simplemente porque dicha sección no era el foco central de este proyecto, además, consideramos que dicha sección se sale del alcance de este proyecto.
+
+![](img/loginAirlinePage.PNG)
+
+#### Página principal de las aerolíneas
+
+Cuando hayamos ingresado como aerolínea, nos llevará a una sección donde en el centro, se muestra una lista de las subastas actualmente activas relacionadas a la aerolínea. Y en la parte superior central podemos ver unos campos que nos permiten la publicación de vuelos, con tiquetes libres. Los cuales, a su vez, harán la publicación automática de subastas por cada tiquete que haya sido publicado.
+
+![](img/mainAirlinePage.PNG)
+
 
 ---
 #### Autores
