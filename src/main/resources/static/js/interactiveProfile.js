@@ -14,9 +14,6 @@ $(document).ready(function() {
             
         }
     });
-    $("#btnBalance").click(function() {
-        putBalance($("#amount").val());
-    })
     let putBalance = (balance) => {
         apiclientLogin.putMoreBalance(localStorage.getItem("username"), balance, (err, res) => {
             if (err) {
@@ -27,4 +24,8 @@ $(document).ready(function() {
             }
         });
     };
+    $("#btnBalance").click(function() {
+        putBalance($("#amount").val());
+    })
+    
 })
