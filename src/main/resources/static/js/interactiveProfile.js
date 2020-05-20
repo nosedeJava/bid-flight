@@ -1,6 +1,4 @@
 $(document).ready(function() {
-
-
     $.ajax({
         url: "/accounts/sessionID",
         type: "GET",
@@ -13,21 +11,20 @@ $(document).ready(function() {
             $("#balanceText").text(data.balance)
         },
         error: function(data) {
-            console.log(data)
+            
         }
     });
     $("#btnBalance").click(function() {
-        putBalance($("#amount").val())
+        putBalance($("#amount").val());
     })
     let putBalance = (balance) => {
         apiclientLogin.putMoreBalance(localStorage.getItem("username"), balance, (err, res) => {
             if (err) {
-                alert("There was an error increasing your balance")
+                alert("There was an error increasing your balance");
             } else {
-                $("#balanceText").text(res)
-
-                $("#userbalance").text(res)
+                $("#balanceText").text(res);
+                $("#userbalance").text(res);
             }
-        })
-    }
+        });
+    };
 })

@@ -1,7 +1,5 @@
 var apiclientFlights = (function () {
     let pushFlight = (airline, flight, callback) => {
-        console.log(airline)
-        console.log(flight)
         $.ajax({
             url: "/airlines/" + airline + "/flights",
             type: "POST",
