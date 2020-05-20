@@ -9,14 +9,14 @@ $(document).ready(function () {
             username:$("#username").val(),
             documenttype:"C.C",
             document:$("#doc").val()
-        }
+        };
         apiclientLogin.createBidder(bidder,(err,res)=>{
             if(err){
-                alert(err)
+                alert(err);
             }else{
-                alert("Your account has been created succesfully")
-                window.location.href="/login.html"
+                alert("Your account has been created succesfully");
+                window.location.href="/login.html";
             }
-        })
-    })
+        });
+    });
 });
