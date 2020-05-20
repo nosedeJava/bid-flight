@@ -99,6 +99,7 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
                 let bid = JSON.parse(eventbody.body);
                 if (!(bid.bidder === undefined || bid.amount === undefined)) {
                     updateBids(bid)
+                    $("#price").text(bid.amount)
                 }
             } catch (error) {
 

@@ -17,7 +17,7 @@ var apiclientFlights = (function () {
     }
     let getAllFlights = (airline, callback) => {
         $.ajax({
-            url: "/airlines/" + airline + "/flights",
+            url: "/airlines/" + airline + "/auctions",
             type: "GET",
             success: function (data) {
                 callback(null, data)
@@ -39,9 +39,22 @@ var apiclientFlights = (function () {
             }
         });
     }
+    let getAirlineInfo = (airline, callback) => {
+        $.ajax({
+            url: "/airlines/" + airline,
+            type: "GET",
+            success: function (data) {
+                callback(null, data)
+            },
+            error: function (data) {
+                callback("error al conseguir un vuelo en particular", {})
+            }
+        });
+    }
     return {
         getFlightByID: (id, callback) => getFlight(id, callback),
         createFlight: (airline, flight, callback) => pushFlight(airline, flight, callback),
-        getFlights: (airline, callback) => getAllFlights(airline, callback)
+        getFlights: (airline, callback) => getAllFlights(airline, callback),
+        getAirline: (airline, callback) => getAirlineInfo(airline, callback)
     }
 })();

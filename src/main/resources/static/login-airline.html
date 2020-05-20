@@ -20,10 +20,10 @@
                   <h3><b>Login for airlines</b></h3>
                </div>
                <div class="card-body">
-                  <form name='f' class="form" action="perform_login" method='POST'>
+                  <form  class="form">
                      <div class="form-group">
-                        <label for="username">Airline</label>
-                        <input type='text' class="form-control form-control-lg rounded" name='username' value=''>
+                        <label for="nameAirline">Airline</label>
+                        <input type='text' class="form-control form-control-lg rounded"  id="nameAirline" value=''>
                         <div class="invalid-feedback">Oops, you missed this one.</div>
                      </div>
                      <div class="form-group">
@@ -31,7 +31,7 @@
                         <input type='password' class="form-control form-control-lg rounded" name='password' />
                         <div class="invalid-feedback">Enter your password too!</div>
                      </div>
-                     <button type="submit" name="submit" class="btn btn-dark " id="btnLogin">Login</button>
+                     <button type="button"  class="btn btn-dark " id="btnLogin">Login</button>
                   </form>
                </div>
                <div class="card-footer text-center text-muted">
@@ -46,15 +46,16 @@
 
    <!-- Optional JavaScript -->
    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+   <script src="js/apiclientFlights.js"></script>
+   <script src="js/interactiveLoginAirline.js"></script>
 </body>
 
 </html>

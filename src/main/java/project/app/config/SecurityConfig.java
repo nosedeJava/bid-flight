@@ -54,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
           .antMatchers("/accounts/**").hasAuthority("BIDDER")
           .antMatchers("/airlines").permitAll()
           .antMatchers("/airlines/**").permitAll()
-          .antMatchers("/flights**").hasAnyAuthority("BIDDER","AIRLINE")
+          .antMatchers("/flights**").permitAll()
           .antMatchers("/particular-auction.html").hasAuthority("BIDDER")
           .antMatchers("/auctions.html").hasAuthority("BIDDER")
           .antMatchers("/airlines.html").permitAll()

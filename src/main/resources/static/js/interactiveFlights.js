@@ -1,8 +1,12 @@
 
 $(document).ready(function () {
-    appFlights.showAirlineAuctions()
-    
-    $("#btnPostFlights").click(function () {
-        alert("naosdjn")
-    })
+    if (localStorage.getItem("airline")) {
+        appFlights.showAirlineAuctions()
+        $("#btnPostFlights").click(function () {
+            console.log($("#inputTakeOffDate").val())
+        })
+    }else{
+        window.location.href = "/login-airline.html"
+    }
+
 })
