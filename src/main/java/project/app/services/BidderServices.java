@@ -8,6 +8,7 @@ import project.app.exception.BidderNotFound;
 import project.app.model.Auction;
 import project.app.model.Bid;
 import project.app.model.Bidder;
+import project.app.model.Ticket;
 import project.app.persistence.BidderRepository;
 
 import java.util.HashSet;
@@ -100,6 +101,8 @@ public class BidderServices {
         }
         for (Bid bid : bidderDB.getBids()) {
             bid.setBidder(null);
+            bid.getAuction().setBids(null);
+            bid.getAuction().getTicket().getFlight().setTickets(new HashSet<>());
             auctions.add(bid.getAuction());
         }
         return auctions;
