@@ -1,13 +1,13 @@
-$(document).ready(function() {
+$(document).ready(function () {
     let airlineInfo = () => {
-        localStorage.setItem('airline', $("#nameAirline").val());
+        localStorage.setItem("airline", $("#nameAirline").val());
         window.location.href = "/flights.html";
     }
-    $("#btnLogin").click(function() {
-        apiclientFlights.getAirline($("#nameAirline").val(),(err,res) =>{
-            if(err){
+    $("#btnLogin").click(function () {
+        apiclientFlights.getAirline($("#nameAirline").val(), (err, res) => {
+            if (err) {
                 alert("Airline doesn't exist");
-            }else{
+            } else {
                 airlineInfo($("#nameAirline").val());
             }
         })
