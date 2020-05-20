@@ -133,10 +133,6 @@ public class AirlineServices {
         auctionServices.addAuction(flight);
     }
 
-    public void updateFlight(String airline, int id,Flight flight){
-
-    }
-
     /**
      * Retorna un vuelo en especifico dentro de los vuelos de una aerolinea.
      * @param airline Nombre de la aerolinea

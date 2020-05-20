@@ -29,9 +29,6 @@ public class Bid {
     @JoinColumn(name = "auction")
     private Auction auction;
 
-    public Bid() {
-    }
-
     public Bid(Bidder bidder, float amount) {
         this.bidder = bidder;
         this.amount = amount;
@@ -65,5 +62,11 @@ public class Bid {
     public void setAuction(Auction auction) {
         this.auction = auction;
     }
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public Bid() {
+    }
 }

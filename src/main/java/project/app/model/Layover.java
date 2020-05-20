@@ -41,5 +41,7 @@ public class Layover {
         this.airport = airport;
     }
 
-    
+    public int getId() {
+        return id;
+    }    
 }

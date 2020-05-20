@@ -17,9 +17,6 @@ public class Airline {
     private String web;
     private String information;
     private Role role = Role.AIRLINE;
-    
-    public Airline() {
-    }
 
     public String getName() {
         return name;
@@ -59,6 +56,9 @@ public class Airline {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Airline() {
     }
 
     
