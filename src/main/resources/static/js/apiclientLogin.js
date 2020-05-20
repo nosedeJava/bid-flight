@@ -12,7 +12,7 @@ var apiclientLogin = (function () {
                 callback("error", "Not created");
             }
         });
-    }
+    };
     let createNewBidder = (bidder, callback) => {
         $.ajax({
             url: "/accounts",
@@ -26,7 +26,7 @@ var apiclientLogin = (function () {
                 callback("error", "not created");
             }
         });
-    }
+    };
     let incrementBalance = (username, balance, callback) => {
         $.ajax({
             url: "/accounts/" + username,
@@ -40,10 +40,10 @@ var apiclientLogin = (function () {
                 callback("error", "no modified");
             }
         });
-    }
+    };
     return {
         createAirline: (airline, callback) => createNewAirline(airline, callback),
         createBidder: (bidder, callback) => createNewBidder(bidder, callback),
         putMoreBalance: (username, balance, callback) => incrementBalance(username, balance, callback)
-    }
+    };
 })();

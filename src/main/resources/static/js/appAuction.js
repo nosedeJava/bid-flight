@@ -75,5 +75,5 @@ var appAuction = (function (persistenceAuction, persistenceFlights) {
             getAndTransformAllAuctions("");
         },
         showActiveAuctions: (username) => getAndTransformActiveAuctions(username)
-    }
+    };
 })(apiclientAuction, apiclientFlights);

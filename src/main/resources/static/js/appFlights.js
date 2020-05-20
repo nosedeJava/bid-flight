@@ -34,5 +34,5 @@ var appFlights = (function (persistenceFlights) {
     }
     return {
         showAirlineAuctions: () => showAuction()
-    }
+    };
 })(apiclientFlights);

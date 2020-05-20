@@ -41,5 +41,5 @@ var apiclientAuction = (function () {
         getActiveAuctions: (username, callback) => getAuctionsPerUser(username, callback),
         getAuctionByID: (id, callback) => getAuction(id, callback),
         createAuctions: (airline, flight, callback) => createNewAuctions(flight, callback)
-    }
+    };
 })(); 
