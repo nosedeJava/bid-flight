@@ -33,10 +33,6 @@ public class Auction {
     @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     @JoinColumn(name = "auction")
     private Set<Bid> bids;
-    // private List<Bidder> followers;
-
-    public Auction() {
-    }
 
     public Auction(Ticket ticket, Date dueDate) {
         this.ticket = ticket;
@@ -67,14 +63,6 @@ public class Auction {
         this.bids = bids;
     }
 
-    /*public List<Bidder> getFollowers() {
-        return followers;
-    }
-
-    public void setFollowers(List<Bidder> followers) {
-        this.followers = followers;
-    }*/
-
     public int getId() {
         return id;
     }
@@ -86,6 +74,9 @@ public class Auction {
     @Override
     public String toString() {
         return "Auction [duedate=" + duedate + ", id=" + id + ", ticket=" + ticket + "]";
+    }
+
+    public Auction() {
     }
 
     

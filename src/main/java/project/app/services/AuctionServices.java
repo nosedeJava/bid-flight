@@ -195,16 +195,6 @@ public class AuctionServices {
     }
 
     /**
-     * Elimina una subasta basandose en una busqueda por ID
-     * 
-     * @param id
-     * @throws AuctionNotFound
-     */
-    public void deleteAuctionByid(int id) throws AuctionNotFound {
-
-    }
-
-    /**
      * Actualiza una auction al recibir una nueva oferta.
      * 
      * @param bid

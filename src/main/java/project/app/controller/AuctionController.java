@@ -3,7 +3,13 @@ package project.app.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import project.app.model.Flight;
 import project.app.services.AuctionServices;
 
@@ -44,17 +50,6 @@ public class AuctionController {
     public ResponseEntity<?> getAuctionbById(@PathVariable("id") int id) {
         try {
             return new ResponseEntity<>(auctionServices.getAuctionById(id), HttpStatus.ACCEPTED);
-        } catch (Exception ex) {
-            Logger.getLogger(AuctionController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error al localizar subasta", HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> DeleteAuctions(@PathVariable("id") int id) {
-        try {
-            auctionServices.deleteAuctionByid(id);
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AuctionController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error al localizar subasta", HttpStatus.NOT_FOUND);
