@@ -6,10 +6,10 @@ var apiclientFlights = (function () {
             data: JSON.stringify(flight),
             contentType: "application/json",
             success: function (data) {
-                callback(null, data)
+                callback(null, data);
             },
             error: function (data) {
-                callback("error al crear vuelos", [])
+                callback("error al crear vuelos", []);
             }
         });
     };

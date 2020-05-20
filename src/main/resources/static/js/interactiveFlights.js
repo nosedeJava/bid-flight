@@ -25,9 +25,9 @@ $(document).ready(function () {
                         name: localStorage.getItem("airline")
                     },
                     takeoffdate: correctTOD,
-                    duration: duration,
-                    source: source,
-                    destiny: destiny,
+                    duration,
+                    source,
+                    destiny,
                     layovers: [],
                     tickets: []
                 };

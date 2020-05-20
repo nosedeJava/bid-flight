@@ -13,7 +13,6 @@ $(document).ready(function () {
         $("#list-flights").html("");
         $("#auctionsButton").removeClass("active");
         $("#activeAuctionsButton").addClass("active");
-        console.log(localStorage.getItem('username'));
         appAuction.showActiveAuctions(localStorage.getItem('username'));
         return false;
     })

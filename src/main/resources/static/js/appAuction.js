@@ -23,6 +23,19 @@ var appAuction = (function (persistenceAuction, persistenceFlights) {
             window.location.href = "/particular-auction.html";
         })
     }
+    let getAndTransformAllAuctions = (filters) => {
+        $("#list-flights").html("");
+        persistenceAuction.getAuctions(filters, (err, res) => {
+            if (err) {
+                alert(err);
+            } else {
+                let listAuctions = res;
+                listAuctions.forEach(auction => {
+                    renderAuction(auction);
+                });
+            }
+        });
+    };
     let renderSearch = () => {
         let strSearch = "<div class='container-fluid col-lg-10 mx-auto p-4 without-corner-div' id='search' ><div class='row'>    <div class='col-10' style='border-right: 3px solid rgb(41, 128, 185);'><div class='row'><label for='source' class='col-sm-1 col-form-label'>From:</label><div class='col-sm-5'>    <input type='text' class='form-control' id='source'></div><label for='destiny' class='col-sm-1 col-form-label'>To:</label><div class='col-sm-5'>    <input type='text' class='form-control' id='destiny'></div></div><div class='row' style='margin-top:1rem;'><div class='col'>    <label for='inputFlightType'>Flight class:</label>    <select id='inputFlightType' class='form-control'><option>...</option><option>Economy class</option><option>Bussiness class</option><option>First class</option>    </select></div><div class='col'>    <label for='inputBagType'>Bag type:</label>    <select id='inputBagType' class='form-control'><option>...</option><option>Backpack</option><option>Hand luggage</option><option>Checked baggage</option>    </select></div><div class='col'>    <label for='inputOrder'>Order by:</label>    <select id='inputOrder' class='form-control'><option>...</option><option>Price</option><option>Duration</option><option>Take off date</option>    </select></div></div>    </div>    <div class='col-2' style='padding-top: 2rem;'><button type='button' class='btn btn-primary btn-block' id='btnSearch' style='font-size: 20px;'><i class='material-icons' >near_me</i></button>    </div></div></div>";
         $("#searching").append(strSearch);
@@ -43,19 +56,7 @@ var appAuction = (function (persistenceAuction, persistenceFlights) {
         })
     }
 
-    let getAndTransformAllAuctions = (filters) => {
-        $("#list-flights").html("");
-        persistenceAuction.getAuctions(filters, (err, res) => {
-            if (err) {
-                alert(err);
-            } else {
-                let listAuctions = res;
-                listAuctions.forEach(auction => {
-                    renderAuction(auction);
-                });
-            }
-        });
-    };
+    
     let getAndTransformActiveAuctions = (username) => {
         persistenceAuction.getActiveAuctions(username, (err, res) => {
             if (err) {

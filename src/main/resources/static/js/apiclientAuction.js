@@ -10,7 +10,7 @@ var apiclientAuction = (function () {
                 callback("error al traer todos los auction",[]);
             }
         });
-    }
+    };
     let getAuction = (id, callback) => {
         $.ajax({
             url: "/auctions/"+id,
@@ -22,7 +22,7 @@ var apiclientAuction = (function () {
                 callback("error al conseguir un auction en especifico",{});
             }
         });
-    }
+    };
     let getAuctionsPerUser = (username, callback) => {
         $.ajax({
             url: "/accounts/"+username+"/auctions",
@@ -34,7 +34,7 @@ var apiclientAuction = (function () {
                 callback("error al conseguir las subastas activas",[]);
             }
         });
-    }
+    };
 
     return {
         getAuctions: (filtros, callback) => getAllAuctions(filtros, callback),
