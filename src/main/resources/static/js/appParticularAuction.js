@@ -98,7 +98,7 @@ var appParticularAuction = (function (persistenceFlights, persistenceAuctions) {
                     $("#price").text(bid.amount);
                 }
             } catch (error) {
-
+                
             }
         });
     }
