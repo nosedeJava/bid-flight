@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
     if (localStorage.getItem("airline")) {
-        appFlights.showAirlineAuctions()
+        appFlights.showAirlineAuctions();
         $("#btnPostFlights").click(function () {
             //YYYY-MM-DDTHH:MM
             let formatTOD = document.getElementById("inputTakeOffDate").value;
@@ -49,11 +49,10 @@ $(document).ready(function () {
                     } else {
                         location.reload();
                     }
-                })
+                });
             }
-        })
+        });
     } else {
         window.location.href = "/login-airline.html";
     }
-
 })
