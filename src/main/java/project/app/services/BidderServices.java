@@ -8,7 +8,6 @@ import project.app.exception.BidderNotFound;
 import project.app.model.Auction;
 import project.app.model.Bid;
 import project.app.model.Bidder;
-import project.app.model.Ticket;
 import project.app.persistence.BidderRepository;
 
 import java.util.HashSet;
