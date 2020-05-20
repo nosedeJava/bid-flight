@@ -4,11 +4,10 @@ var apiclientAuction = (function () {
             url: "/auctions"+filtros,
             type: "GET",
             success: function(data){
-                console.log(data)
-                callback(null,data)
+                callback(null,data);
             },
             error: function(data) {
-                callback("error al traer todos los auction",[])
+                callback("error al traer todos los auction",[]);
             }
         });
     }
@@ -17,10 +16,10 @@ var apiclientAuction = (function () {
             url: "/auctions/"+id,
             type: "GET",
             success: function(data){ 
-                callback(null,data)
+                callback(null,data);
             },
             error: function(data) {
-                callback("error al conseguir un auction en especifico",{})
+                callback("error al conseguir un auction en especifico",{});
             }
         });
     }
@@ -29,10 +28,10 @@ var apiclientAuction = (function () {
             url: "/accounts/"+username+"/auctions",
             type: "GET",
             success: function(data){ 
-                callback(null,data)
+                callback(null,data);
             },
             error: function(data) {
-                callback("error al conseguir las subastas activas",[])
+                callback("error al conseguir las subastas activas",[]);
             }
         });
     }
