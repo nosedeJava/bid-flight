@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import project.app.model.Airline;
 import project.app.model.Flight;
 import project.app.services.AirlineServices;
+import project.app.services.AuctionServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,9 @@ public class AirlineController {
 
     @Autowired
     private AirlineServices airlineServices;
+
+    @Autowired
+    private AuctionServices auctionServices;
 
 
 
@@ -122,6 +126,18 @@ public class AirlineController {
         }catch(Exception ex){
             Logger.getLogger(AirlineController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error al agregar la aerolinea", HttpStatus.FORBIDDEN);
+        }
+
+    }
+
+    @RequestMapping(value = "/airlines/{airline}/auctions", method = RequestMethod.GET)
+    public ResponseEntity<?> getAuctions(@PathVariable("airline") String airline){
+        try{
+            return new ResponseEntity<>(auctionServices.getAllAuctionByAirline(airline),HttpStatus.ACCEPTED);
+
+        }catch(Exception ex){
+            Logger.getLogger(AirlineController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error al encontrar el vuelo", HttpStatus.FORBIDDEN);
         }
 
     }

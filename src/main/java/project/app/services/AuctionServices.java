@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -225,7 +226,22 @@ public class AuctionServices {
             bidRepository.save(bid);
         }
     }
-
+    
+    /**
+     * Obtiene todas las auctions filtrando por aerolinea
+     * @param airline Nombre de la aerolinea.
+     * @return Lista de todas las auctions relacionadas a esa aerolinea.
+    */
+    public List<Auction> getAllAuctionByAirline(String airline){
+        List<Auction> auctions = new ArrayList<>();
+        List<Auction> all = getAllAuctions(new HashMap<String, String>());
+        for(Auction auction : all){
+            if(auction.getTicket().getFlight().getAirline().getName().equals(airline)){
+                auctions.add(auction);
+            }
+        }
+        return auctions;
+    }
     /**
      * Metodo interno para el calculo de las subastas, originalmente quemado a 10h
      * antes de la salida del vuelo.
