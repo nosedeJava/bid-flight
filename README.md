@@ -5,7 +5,7 @@ Proyecto para la asignatura de Arquitectura de software de la Escuela colombiana
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f78da0525bac44e9a5fce4a038129ff7)](https://www.codacy.com/gh/nosedeJava/bid-flight?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nosedeJava/bid-flight&amp;utm_campaign=Badge_Grade)
 
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://bid-flight.herokuapp.com/particular-auction.html)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://bid-flight.herokuapp.com)
 
 --- 
 ### Problema a solucionar
