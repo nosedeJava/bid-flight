@@ -1,5 +1,7 @@
 # Bid flight
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5488ecd462ad4fd4953dbbc6b45dbc82)](https://app.codacy.com/gh/nosedeJava/bid-flight?utm_source=github.com&utm_medium=referral&utm_content=nosedeJava/bid-flight&utm_campaign=Badge_Grade_Dashboard)
+
 Proyecto para la asignatura de Arquitectura de software de la Escuela colombiana de ingeniería Julio Garavito.
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f78da0525bac44e9a5fce4a038129ff7)](https://www.codacy.com/gh/nosedeJava/bid-flight?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nosedeJava/bid-flight&amp;utm_campaign=Badge_Grade)
